@@ -1,0 +1,10 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+RewriteBase /
+
+RewriteRule ^([_,0-9A-Za-z/\-]*)$ /index.php [T=application/x-httpd-php,L,QSA]
