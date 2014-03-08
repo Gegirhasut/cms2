@@ -1,39 +1,38 @@
 CREATE TABLE IF NOT EXISTS `at_users` (
   `u_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` int(11) DEFAULT NULL COMMENT '1 - teacher, 2 - student',
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `surname` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `type` int(11) NOT NULL DEFAULT 2 COMMENT '1 - teacher, 2 - student',
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(32) NOT NULL DEFAULT '',
+  `fio` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `zip` varchar(20) DEFAULT NULL,
-  `country_id` int(11) NOT NULL DEFAULT '1',
-  `city` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-   city_id int(11) NOT NULL DEFAULT '1',
-  `raion` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `country` int(11) NOT NULL DEFAULT 0,
+   city int(11) NOT NULL DEFAULT 0,
+  `region` int(11) NOT NULL DEFAULT 0,
   `status` int(11) not null DEFAULT 0 COMMENT '0 - not activated, 1 - activated, 2 - bann',
   `user_pic` varchar(100) DEFAULT NULL,
   `skype` varchar(100) DEFAULT NULL,
-  `price` decimal(18,2) DEFAULT '0.00',
-  `use_contact_form` tinyint(1) DEFAULT '0',
-  `info` varchar(5000) DEFAULT NULL,
+  `use_contact_form` bool DEFAULT false,
+  `info` varchar(5000) NOT NULL DEFAULT '',
   PRIMARY KEY (`u_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-create table at_cities
+create table at_activations
 (
- city_id int(11) NOT NULL auto_increment,
- city varchar(80) NOT NULL DEFAULT '',
- latitude float (10,6) null,
- longitude float (10,6) null,
- zoom int default 12,
- PRIMARY KEY (city_id)
+ a_id int(11) NOT NULL auto_increment,
+ u_id int(11) NOT NULL,
+ code varchar(32) not null,
+ PRIMARY KEY (a_id)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-create table at_countries
+create table at_change_email
 (
- c_id int(11) NOT NULL auto_increment,
- country varchar(80) not null,
- PRIMARY KEY (c_id)
+ ce_id int(11) NOT NULL auto_increment,
+ u_id int(11) NOT NULL,
+ code varchar(32) not null,
+ email varchar(255) NOT NULL DEFAULT '',
+ PRIMARY KEY (ce_id),
+ INDEX (code),
+ UNIQUE(code, email, u_id)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;

@@ -5,6 +5,6 @@
         {/foreach}
     </select>
 {else}
-    <input type="text" id="filter_{$key}" onkeyup="fill_select('{$key}', '{$field.relation.show}', '{$field.relation.join}')" value="{$select_values[$key]}" autocomplete="off"/>
+    <input type="text" id="filter_{$field.relation.on}" onkeyup="fill_select('{$field.relation.on}', '{$field.relation.show}', '{$field.relation.join}')" value="{$select_values[$key]}" autocomplete="off"/>
     <input type="hidden" name="{$key}" id="{$key}" value="{$values[$key]}" />
 {/if}

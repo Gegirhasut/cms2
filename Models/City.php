@@ -1,13 +1,32 @@
 <?php
+require_once('Models/Base.php');
 
-class City
+class City extends Base
 {
-    public $table = 'at_cities';
+    public $table = 'cities';
     public $identity = 'city_id';
-    public $api_fields = array();
+    public $api_fields = array('city_id' => 1, 'title' => 1 );
 
     public $fields = array (
         'city_id' => array ('type' => 'integer', 'nolist' => 1),
-        'city' => array ('type' => 'text', 'title' => 'Город'),
+        'country_id' => array ('type' => 'select',
+            'title' => 'Страна',
+            'relation' => array (
+                'type' => 'oneToMany',
+                'join' => 'Country',
+                'on' => 'country_id',
+                'show' => 'title'
+            )
+        ),
+        'region_id' => array ('type' => 'select',
+            'title' => 'Регион',
+            'relation' => array (
+                'type' => 'oneToMany',
+                'join' => 'Region',
+                'on' => 'region_id',
+                'show' => 'title'
+            )
+        ),
+        'title' => array ('type' => 'text', 'title' => 'Город'),
     );
 }

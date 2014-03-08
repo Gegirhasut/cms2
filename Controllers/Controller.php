@@ -1,11 +1,10 @@
 <?php
-class Controller
+require_once('Controllers/SmartyController.php');
+
+class Controller extends SmartyController
 {
     function display () {
-        require_once('Application/SmartyLoader.php');
-        $smarty = SmartyLoader::getSmarty();
-        $smarty->caching = false;
-
-        $smarty->display('main.tpl');
+        $this->smarty->assign('page', 'main');
+        parent::display();
     }
 }

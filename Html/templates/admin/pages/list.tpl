@@ -4,7 +4,7 @@
     <tr>
         <th style="text-align: center;">Операции</th>
         {foreach from=$object->fields item=field key=name}
-            {if !isset($field.nolist)}
+            {if !isset($field.nolist) && !isset($field.nondb)}
                 <th style="text-align: center;">
                     {$field.title}
                     {if !isset($field.relation)}
@@ -24,7 +24,7 @@
                 <a title="Удалить" href="javascript:;" onclick="delete_object('{$class}', '{$values[$identity]}');"><img src="/images/admin/deletered.png" width="16"></a>
             </td>
             {foreach from=$object->fields item=field key=key}
-                {if !isset($field.nolist)}
+                {if !isset($field.nolist) && !isset($field.nondb)}
                     <td style="text-align: center;">
                         {assign var="file_name" value=$field.type}
                         {assign var="file_name_full" value=Html/templates/admin/fields/list/$file_name.tpl}

@@ -22,17 +22,24 @@ class BaseAdminController
     function display($menu = true) {
         if ($menu) {
             $admin_menu = array (
-                'Пользователи' => array ('url' => '/admin/list/User/?order=u_id', 'object' => 'User'),
+                'Пользователи' => array ('dropdown' =>
+                    array(
+                        'Пользователи' => array ('url' => '/admin/list/User/?order=u_id'),
+                        'Активации' => array ('url' => '/admin/list/Activation/?order=a_id'),
+                        'Смена емайла' => array ('url' => '/admin/list/ChangeEmail/?order=ce_id')
+                    )
+                ),
                 'География' => array ('dropdown' =>
                     array(
-                        'Страны' => array ('url' => '/admin/list/Country/', 'object' => 'Subject'),
-                        'Города' => array ('url' => '/admin/list/City/', 'object' => 'Rubric'),
+                        'Страны' => array ('url' => '/admin/list/Country/'),
+                        'Регионы' => array ('url' => '/admin/list/Region/'),
+                        'Города' => array ('url' => '/admin/list/City/'),
                     )
                 ),
                 'Предметы' => array ('dropdown' =>
                     array(
-                        'Рубрики' => array ('url' => '/admin/list/Rubric/', 'object' => 'Rubric'),
-                        'Предметы' => array ('url' => '/admin/list/Subject/', 'object' => 'Subject'),
+                        'Рубрики' => array ('url' => '/admin/list/Rubric/'),
+                        'Предметы' => array ('url' => '/admin/list/Subject/'),
                     )
                 ),
             );

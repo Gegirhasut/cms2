@@ -5,12 +5,11 @@ class Application
 {
     public static function run () {
         $controllerPath = Router::getControllerPath();
+        require_once('Configs/Config.php');
 
         require_once($controllerPath . '/Controller.php');
         $controller = new ReflectionClass('Controller');
         $c = $controller->newInstance();
-
-        require_once('Configs/Config.php');
 
         if (!empty($_POST)) {
             $c->post();

@@ -27,6 +27,7 @@ class MySQL implements IDatabase
 
     public function execute () {
         $result = $this->mysqli->query($this->sql);
+
         if (!$result) {
             throw new Exception('Error executing SQL query : ' . $this->sql . '. Error: ' . $this->mysqli->error);
         }
@@ -112,6 +113,9 @@ class MySQL implements IDatabase
         $values = '';
 
         foreach ($object->fields as $key => $field) {
+            if (isset($field['nondb'])) {
+                continue;
+            }
             if (isset($field['value'])) {
                 $columns .= empty($columns) ? '(' . $key : ',' . $key;
                 $values .= empty($values) ? '(' . "'" . $this->mysqli->real_escape_string($field['value']) . "'" : ", '" . $this->mysqli->real_escape_string($field['value']) . "'";
@@ -138,7 +142,7 @@ class MySQL implements IDatabase
             }
         }
 
-        $this->sql .= "UPDATE {$object->table} SET $update WHERE {$object->identity} = " . $object->fields[$object->identity]['value'];
+        $this->sql = "UPDATE {$object->table} SET $update WHERE {$object->identity} = " . $object->fields[$object->identity]['value'];
 
         return $this;
     }
