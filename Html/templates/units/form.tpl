@@ -15,7 +15,7 @@
                             {else}
                                 <input type="{$field.type}" class="form-control" id="{$key}" name="{$key}" value="{$form.value[$key]}" placeholder="{$field.placeholder}">
                             {/if}
-                            
+
                             {if isset ($field.help_block)}
                                 <span class="help-block">{$field.help_block}</span>
                             {/if}

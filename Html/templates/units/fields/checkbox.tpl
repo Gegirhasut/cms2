@@ -1,0 +1,1 @@
+<input type="checkbox" id="{$key}" name="{$key}" placeholder="{$field.placeholder}" {if $form.value[$key] eq 1}checked="checked"{/if} />

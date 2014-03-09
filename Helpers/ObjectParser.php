@@ -51,6 +51,13 @@ class ObjectParser
                     }
                 }
             }
+
+            if ($field['type'] == 'checkbox') {
+                $field['value'] = '0';
+                if (!empty($input[$key]) && $input[$key] == 'on') {
+                    $field['value'] = '1';
+                }
+            }
         }
 
         if ($noCheck) {
