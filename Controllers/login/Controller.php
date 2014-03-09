@@ -6,12 +6,17 @@ class Controller extends SmartyController
 {
     function post () {
         require_once('Helpers/ObjectParser.php');
-        require_once('Models/User.php');
+        require_once('Models/LoginUser.php');
         require_once('Helpers/json.php');
 
-        $user = new User();
+        $user = new LoginUser();
 
-        ObjectParser::parse($_POST, $user, true);
+        ObjectParser::parse($_POST, $user);
+
+        if (!empty($user->error)) {
+            echo arrayToJson(array('error' => $user->error));
+            exit;
+        }
 
         require_once ('Database/DBFactory.php');
         $db = DBFactory::getInstance('mysql', $GLOBALS['mysql']);
@@ -20,15 +25,21 @@ class Controller extends SmartyController
         $user = UserLogin::loginByLogin($db->escape($user->email), $db->escape($user->password), true);
 
         if (!is_null($user)) {
-            echo 'success';
+            echo arrayToJson(array('success' => '/cabinet'));
         } else {
-            echo 'error';
+            $user->error[] = array('key' => 'error_login');
+            echo arrayToJson(array('error' => $user->error));
         }
 
         exit;
     }
 
     function display () {
+        if (isset($_SESSION['cabinet_message'])) {
+            $this->smarty->assign('cabinet_message', $_SESSION['cabinet_message']);
+            unset($_SESSION['cabinet_message']);
+        }
+
         $this->smarty->assign('page', 'login');
         parent::display();
     }

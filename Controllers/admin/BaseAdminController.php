@@ -26,7 +26,8 @@ class BaseAdminController
                     array(
                         'Пользователи' => array ('url' => '/admin/list/User/?order=u_id'),
                         'Активации' => array ('url' => '/admin/list/Activation/?order=a_id'),
-                        'Смена емайла' => array ('url' => '/admin/list/ChangeEmail/?order=ce_id')
+                        'Смена емайла' => array ('url' => '/admin/list/ChangeEmail/?order=ce_id'),
+                        'Восстановление пароля' => array ('url' => '/admin/list/RemindPassword/?order=rp_id')
                     )
                 ),
                 'География' => array ('dropdown' =>

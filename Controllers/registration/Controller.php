@@ -58,7 +58,7 @@ class Controller extends SmartyController
         $email->SetValue('url', 'http://' . $_SERVER['SERVER_NAME']);
         $email->Send($GLOBALS['admin'], 'Новая регистрация на сайте Все Учителя');
 
-        echo 'success';
+        echo arrayToJson(array('success' => '/cabinet'));
 
         exit;
     }

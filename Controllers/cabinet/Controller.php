@@ -74,7 +74,7 @@ class Controller extends SmartyController
 
         $_SESSION['cabinet_message'][] = 'Изменения сохранены';
 
-        echo 'success';
+        echo arrayToJson(array('success' => '/cabinet'));
         exit;
     }
 
