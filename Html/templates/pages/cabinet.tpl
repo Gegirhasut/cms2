@@ -1,6 +1,6 @@
 <link href="/Libs/Bootstrap-3.1.0/css/select2.css" rel="stylesheet"/>
 <script src="/Libs/Bootstrap-3.1.0/js/select2.js"></script>
-<script src="/js/app/form.js"></script>
+<script src="/js/app/bootstrap-form.js"></script>
 
 <div class="row">
     <div class="col-md-12">

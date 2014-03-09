@@ -42,7 +42,7 @@ class Controller extends SmartyController
             echo arrayToJson(array('success' => ''));
 
         } else {
-            $remindPassword->error[] = array('message' => 'not_found', 'name' => 'email');
+            $remindPassword->error[] = array('message' => ObjectParser::getMessage('email_not_found'), 'name' => 'email');
             echo arrayToJson(array('error' => $remindPassword->error));
         }
 
@@ -66,6 +66,20 @@ class Controller extends SmartyController
 
         $this->smarty->assign('h1', 'Восстановление пароля');
         $this->smarty->assign('page', 'remind_password');
+
+        Application::requireClass('RemindPasswordUser', 'User');
+        $user = new RemindPasswordUser();
+        $this->smarty->assign(
+            'form',
+            array(
+                'model' => $user,
+                'action' => '/auth/remind_password',
+                'action_name' => 'Восстановить',
+                'label_width' => 1,
+                'field_width' => 3,
+                'help_width' => 8
+            )
+        );
 
         parent::display();
     }

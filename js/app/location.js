@@ -4,7 +4,6 @@ var city_data = [];
 
 $(document).ready(function() {
     $("#country").select2({
-        placeholder: "Выберите Вашу страну",
         minimumInputLength: 1,
         ajax: {
             url: '/api/getCountry/',
@@ -37,7 +36,6 @@ $(document).ready(function() {
     });
 
     $("#region").select2({
-        placeholder: "Выберите Ваш регион",
         minimumInputLength: 1,
         ajax: {
             url: '/api/getRegion/',
@@ -71,7 +69,6 @@ $(document).ready(function() {
     }
 
     $("#city").select2({
-        placeholder: "Выберите Ваш город",
         minimumInputLength: 0,
         ajax: {
             url: '/api/getCity/',

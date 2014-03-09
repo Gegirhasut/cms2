@@ -72,6 +72,20 @@ class Controller extends SmartyController
         $this->smarty->assign('h1', 'Восстановление пароля');
         $this->smarty->assign('page', 'new_password');
 
+        Application::requireClass('NewPasswordUser', 'User');
+        $user = new NewPasswordUser();
+        $this->smarty->assign(
+            'form',
+            array(
+                'model' => $user,
+                'action' => '/auth/new_password',
+                'action_name' => 'Изменить пароль',
+                'label_width' => 2,
+                'field_width' => 3,
+                'help_width' => 7
+            )
+        );
+
         parent::display();
     }
 }

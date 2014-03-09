@@ -6,10 +6,10 @@ class Controller extends SmartyController
 {
     function post () {
         require_once('Helpers/ObjectParser.php');
-        Application::requireClass('User');
+        Application::requireClass('RegistrationUser', 'User');
         require_once('Helpers/json.php');
 
-        $user = new User();
+        $user = new RegistrationUser();
 
         ObjectParser::parse($_POST, $user);
 
@@ -23,7 +23,7 @@ class Controller extends SmartyController
         $users = $db->select('count(*) as cnt')->from($user->table)->where("email = '" . $db->escape($user->email) . "'")->fetch();
 
         if ($users[0]['cnt'] > 0) {
-            echo arrayToJson(array('error' => array(0 => array ('name' => 'email', 'message' => 'unique'))));
+            echo arrayToJson(array('error' => array(0 => array ('name' => 'email', 'message' => ObjectParser::getMessage('unique')))));
             exit;
         }
 
@@ -62,6 +62,20 @@ class Controller extends SmartyController
     }
 
     function display () {
+        Application::requireClass('RegistrationUser', 'User');
+        $user = new RegistrationUser();
+        $this->smarty->assign(
+            'form',
+            array(
+                'model' => $user,
+                'action' => '/auth/registration',
+                'action_name' => 'Зарегистрироваться',
+                'label_width' => 2,
+                'field_width' => 4,
+                'help_width' => 6
+            )
+        );
+
         $this->smarty->assign('page', 'registration');
         parent::display();
     }

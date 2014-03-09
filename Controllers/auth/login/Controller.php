@@ -27,7 +27,7 @@ class Controller extends SmartyController
         if (!is_null($user)) {
             echo arrayToJson(array('success' => '/cabinet'));
         } else {
-            $user->error[] = array('key' => 'error_login');
+            $user->error[] = array('name' => 'email', 'message' => ObjectParser::getMessage('login'));
             echo arrayToJson(array('error' => $user->error));
         }
 
@@ -39,6 +39,20 @@ class Controller extends SmartyController
             $this->smarty->assign('cabinet_message', $_SESSION['cabinet_message']);
             unset($_SESSION['cabinet_message']);
         }
+
+        Application::requireClass('LoginUser', 'User');
+        $user = new LoginUser();
+        $this->smarty->assign(
+            'form',
+            array(
+                'model' => $user,
+                'action' => '/auth/login',
+                'action_name' => 'Войти',
+                'label_width' => 1,
+                'field_width' => 3,
+                'help_width' => 8
+            )
+        );
 
         $this->smarty->assign('page', 'login');
         parent::display();

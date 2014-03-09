@@ -42,11 +42,10 @@ class Controller extends SmartyController
         $_SESSION['cabinet_message'] = array();
 
         require_once('Helpers/ObjectParser.php');
-        Application::requireClass('User');
+        Application::requireClass('PersonalUser', 'User');
         require_once('Helpers/json.php');
 
-        $user = new User();
-        unset($user->password2);
+        $user = new PersonalUser();
 
         if (empty($_POST['password'])) {
             unset($user->password);
@@ -55,7 +54,6 @@ class Controller extends SmartyController
         ObjectParser::parse($_POST, $user);
 
         $user->{$user->identity} = $_SESSION['user_auth']['u_id'];
-        unset($user->status);
 
         if (!empty($user->error)) {
             echo arrayToJson(array('error' => $user->error));
@@ -66,7 +64,7 @@ class Controller extends SmartyController
             $check_user = $this->db->select()->from($user->table)->where("email = '{$user->email}'")->fetch();
 
             if (!empty($check_user)) {
-                $user->error[] = array ('name' => 'email', 'message' => 'unique');
+                $user->error[] = array ('name' => 'email', 'message' => ObjectParser::getMessage('unique'));
                 echo arrayToJson(array('error' => $user->error));
                 exit;
             }
@@ -135,6 +133,21 @@ class Controller extends SmartyController
             $this->assignRegion();
             $this->assignCity();
         }
+
+        Application::requireClass('PersonalUser', 'User');
+        $user = new PersonalUser();
+        $this->smarty->assign(
+            'form',
+            array(
+                'model' => $user,
+                'action' => '/cabinet',
+                'action_name' => 'Сохранить',
+                'label_width' => 1,
+                'field_width' => 4,
+                'help_width' => 7,
+                'value' => $_SESSION['user_auth']
+            )
+        );
 
         parent::display();
     }
