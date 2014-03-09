@@ -16,7 +16,7 @@
 
         </div>
         <div class="form-group has-error">
-            Если Вы не получили письмо, то сделайте <label class="control-label"><a href="/activation/resend">повторную активацию</a></label>.
+            Если Вы не получили письмо, то сделайте <label class="control-label"><a href="/auth/activation/resend">повторную активацию</a></label>.
         </div>
 
         {if isset($cabinet_message) && !empty($cabinet_message)}

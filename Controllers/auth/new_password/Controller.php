@@ -27,7 +27,7 @@ class Controller extends SmartyController
             if (isset($_GET['code'])) {
                 $code = $this->db->escape($_GET['code']);
             } else {
-                header ('location: /remind_password');
+                header ('location: /auth/remind_password');
                 exit;
             }
         } else {
@@ -47,7 +47,7 @@ class Controller extends SmartyController
 
             $this->db->delete()->from($remindPassword->table)->where("rp_id = {$reminder[0]['rp_id']}")->execute();
 
-            echo arrayToJson(array('success' => '/login'));
+            echo arrayToJson(array('success' => '/auth/login'));
             exit;
         }
 

@@ -11,7 +11,7 @@
 <br>
 <div class="row">
     <div class="col-md-12">
-        <form role="form" class="form-horizontal" method="post" id="form" action="/registration">
+        <form role="form" class="form-horizontal" method="post" id="form" action="/auth/registration">
             <div class="form-group">
                 <label for="fio" class="col-sm-2 control-label">ФИО</label>
                 <div class="col-sm-4">

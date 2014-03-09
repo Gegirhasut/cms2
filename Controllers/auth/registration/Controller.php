@@ -47,7 +47,6 @@ class Controller extends SmartyController
         $email->SetValue('fio', $user->fio);
         $email->SetValue('email', $user->email);
         $email->SetValue('password', $user->password);
-        $email->SetValue('url', 'http://' . $_SERVER['SERVER_NAME']);
         $email->SetValue('code', $activation->code);
         $email->Send($user->email, 'Регистрация на сайте Все Учителя');
 
@@ -55,7 +54,6 @@ class Controller extends SmartyController
         $email->SetValue('fio', $user->fio);
         $email->SetValue('email', $user->email);
         $email->SetValue('password', $user->password);
-        $email->SetValue('url', 'http://' . $_SERVER['SERVER_NAME']);
         $email->Send($GLOBALS['admin'], 'Новая регистрация на сайте Все Учителя');
 
         echo arrayToJson(array('success' => '/cabinet'));

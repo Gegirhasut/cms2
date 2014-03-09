@@ -24,15 +24,15 @@
                     {if !isset($user_auth)}
                         <div class="col-md-4">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/login">Вход</a></li>
-                                <li><a href="/registration">Регистрация</a></li>
+                                <li><a href="/auth/login">Вход</a></li>
+                                <li><a href="/auth/registration">Регистрация</a></li>
                             </ul>
                         </div>
                     {else}
                         <div class="col-md-4">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="/cabinet">Личный кабинет</a></li>
-                                <li><a href="/logout">Выход</a></li>
+                                <li><a href="/auth/logout">Выход</a></li>
                             </ul>
                         </div>
                     {/if}

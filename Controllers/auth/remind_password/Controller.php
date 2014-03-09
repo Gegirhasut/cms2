@@ -34,7 +34,6 @@ class Controller extends SmartyController
 
             $email->LoadTemplate('remind_password');
             $email->SetValue('fio', $user[0]['fio']);
-            $email->SetValue('url', 'http://' . $_SERVER['SERVER_NAME']);
             $email->SetValue('code', $remindPassword->code);
             $email->Send($user[0]['email'], 'Восстановление пароля');
 

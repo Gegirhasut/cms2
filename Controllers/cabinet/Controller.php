@@ -32,7 +32,6 @@ class Controller extends SmartyController
         $email->SetValue('fio', $_SESSION['user_auth']['fio']);
         $email->SetValue('old_email', $_SESSION['user_auth']['email']);
         $email->SetValue('new_email', $new_email);
-        $email->SetValue('url', 'http://' . $_SERVER['SERVER_NAME']);
         $email->SetValue('code', $changeEmail->code);
         $email->Send($_SESSION['user_auth']['email'], 'Смена Email');
 

@@ -17,6 +17,7 @@ class Email
 	{
         $base_template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/Email/Templates/base.html");
         $this->_body = str_replace("[content]", $this->_body, $base_template);
+        $this->SetValue('url', 'http://' . $_SERVER['SERVER_NAME']);
 
 		if ($reply == null) {
 			$reply = $GLOBALS['from'];

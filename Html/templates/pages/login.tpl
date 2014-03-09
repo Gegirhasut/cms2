@@ -10,7 +10,7 @@
 <br>
 <div class="row">
     <div class="col-md-12">
-        <form class="form-horizontal" role="form" id="form" action="/login">
+        <form class="form-horizontal" role="form" id="form" action="/auth/login">
             <div class="form-group">
                 <label for="email" class="col-sm-1 control-label">Email</label>
                 <div class="col-sm-3">
@@ -64,7 +64,7 @@
         <div class="form-group">
             <label class="control-label">
                 <br>
-                <a href="/remind_password">Восстановить пароль</a>
+                <a href="/auth/remind_password">Восстановить пароль</a>
             </label>
         </div>
     </div>

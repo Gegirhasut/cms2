@@ -7,7 +7,7 @@ class Controller
     function display () {
         session_start();
         if (!isset($_SESSION['user_auth'])) {
-            header('location: /login');
+            header('location: /auth/login');
             exit;
         }
 
@@ -23,7 +23,6 @@ class Controller
 
                 $email->LoadTemplate('activation_resend');
                 $email->SetValue('fio', $_SESSION['user_auth']['fio']);
-                $email->SetValue('url', 'http://' . $_SERVER['SERVER_NAME']);
                 $email->SetValue('code', $activation[0]['code']);
                 $email->Send($_SESSION['user_auth']['email'], 'Активация личного кабинета');
 
@@ -33,7 +32,7 @@ class Controller
         } else {
             $_SESSION['cabinet_message'] = array("Ссылка для активации была отправлена на email {$_SESSION['user_auth']['email']}!");
         }
-//exit;
+
         header('location: /cabinet');
         exit;
     }

@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form class="form-horizontal" role="form" id="form" action="/new_password">
+        <form class="form-horizontal" role="form" id="form" action="/auth/new_password">
             <div class="form-group">
                 <label for="password" class="col-sm-2 control-label">Новый пароль</label>
                 <div class="col-sm-3">
