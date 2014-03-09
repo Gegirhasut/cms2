@@ -17,7 +17,7 @@ class Controller extends SmartyController
     }
 
     function changeEmailRequest($new_email) {
-        require_once('Models/ChangeEmail.php');
+        Application::requireClass('ChangeEmail');
         $changeEmail = new ChangeEmail();
         $changeEmail->email = $new_email;
         $changeEmail->u_id = $_SESSION['user_auth']['u_id'];
@@ -43,7 +43,7 @@ class Controller extends SmartyController
         $_SESSION['cabinet_message'] = array();
 
         require_once('Helpers/ObjectParser.php');
-        require_once('Models/User.php');
+        Application::requireClass('User');
         require_once('Helpers/json.php');
 
         $user = new User();
@@ -65,7 +65,7 @@ class Controller extends SmartyController
 
         if ($user->email != $_SESSION['user_auth']['email']) {
             $check_user = $this->db->select()->from($user->table)->where("email = '{$user->email}'")->fetch();
-            
+
             if (!empty($check_user)) {
                 $user->error[] = array ('name' => 'email', 'message' => 'unique');
                 echo arrayToJson(array('error' => $user->error));
@@ -88,7 +88,7 @@ class Controller extends SmartyController
 
 
     function assignCountry() {
-        require_once('Models/Country.php');
+        Application::requireClass('Country');
         $country = new Country();
 
         $country = $this->db->select('title')->from($country->table)->where('country_id = ' . $_SESSION['user_auth']['country'])->fetch();
@@ -98,7 +98,7 @@ class Controller extends SmartyController
     }
 
     function assignRegion() {
-        require_once('Models/Region.php');
+        Application::requireClass('Region');
         $region = new Region();
 
         $region = $this->db->select('title')->from($region->table)->where('region_id = ' . $_SESSION['user_auth']['region'])->fetch();
@@ -109,7 +109,7 @@ class Controller extends SmartyController
     }
 
     function assignCity() {
-        require_once('Models/City.php');
+        Application::requireClass('City');
         $city = new City();
 
         $city = $this->db->select('title')->from($city->table)->where('city_id = ' . $_SESSION['user_auth']['city'])->fetch();

@@ -8,7 +8,7 @@ class Controller extends SmartyController
 
     function post () {
         require_once('Helpers/ObjectParser.php');
-        require_once('Models/NewPassword.php');
+        Application::requireClass('NewPassword');
         require_once('Helpers/json.php');
 
         $newPassword = new NewPassword();
@@ -20,7 +20,7 @@ class Controller extends SmartyController
             exit;
         }
 
-        require_once('Models/RemindPassword.php');
+        Application::requireClass('RemindPassword');
         $remindPassword = new RemindPassword();
 
         if (!isset($_SESSION['code'])) {
@@ -37,7 +37,7 @@ class Controller extends SmartyController
         $reminder = $this->db->select('u_id, rp_id')->from($remindPassword->table)->where("code = '$code'")->fetch();
 
         if (!empty($reminder)) {
-            require_once('Models/User.php');
+            Application::requireClass('User');
             $user = new User();
             $user->u_id = $reminder[0]['u_id'];
             $user->password = $newPassword->password;

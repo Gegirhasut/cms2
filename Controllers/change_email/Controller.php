@@ -1,6 +1,6 @@
 <?php
 require_once ('Database/DBFactory.php');
-require_once('Models/ChangeEmail.php');
+Application::requireClass('ChangeEmail');
 
 class Controller
 {
@@ -11,7 +11,7 @@ class Controller
         $new_email = $db->select('ce_id, u_id, email')->from($changeEmail->table)->where("code = '" . $db->escape($_GET['code']) . "'")->fetch();
 
         if (!empty($new_email)) {
-            require_once('Models/User.php');
+            Application::requireClass('User');
             $user = new User();
             $user->u_id = $new_email[0]['u_id'];
             $user->email = $new_email[0]['email'];

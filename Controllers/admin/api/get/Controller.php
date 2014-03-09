@@ -12,12 +12,11 @@ class Controller extends BaseApiController
 
         $class = Router::$path[0];
 
-        if (!file_exists('Models/' . $class . '.php')) {
+        if (!Application::requireClass($class)) {
             throw new Exception("Unable to use API. Wrong Object [$class]. Request: " . $_SERVER['REQUEST_URI']);
             exit;
         }
 
-        require_once('Models/' . $class . '.php');
         $object = new ReflectionClass($class);
         $object = $object->newInstance();
 

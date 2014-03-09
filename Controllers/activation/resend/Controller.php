@@ -1,6 +1,6 @@
 <?php
 require_once ('Database/DBFactory.php');
-require_once('Models/Activation.php');
+Application::requireClass('Activation');
 
 class Controller
 {

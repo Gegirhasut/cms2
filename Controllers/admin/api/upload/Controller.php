@@ -12,7 +12,7 @@ class Controller extends BaseApiController
 
         $class = Router::$path[0];
 
-        if (!file_exists('Models/' . $class . '.php')) {
+        if (!Application::requireClass($class)) {
             throw new Exception("Unable to use API. Wrong Object [$class]. Request: " . $_SERVER['REQUEST_URI']);
             exit;
         }
@@ -35,7 +35,7 @@ class Controller extends BaseApiController
     }
 
     function uploadFile($fileElementName, $class) {
-        require_once('Models/' . $class . '.php');
+        Application::requireClass($class);
         $object = new ReflectionClass($class);
         $object = $object->newInstance();
 

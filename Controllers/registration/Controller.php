@@ -6,7 +6,7 @@ class Controller extends SmartyController
 {
     function post () {
         require_once('Helpers/ObjectParser.php');
-        require_once('Models/User.php');
+        Application::requireClass('User');
         require_once('Helpers/json.php');
 
         $user = new User();
@@ -32,7 +32,7 @@ class Controller extends SmartyController
         require_once('Application/UserLogin.php');
         UserLogin::loginById($u_id, true);
 
-        require_once('Models/Activation.php');
+        Application::requireClass('Activation');
         $activation = new Activation();
         $u_id = $db->lastId();
         $activation->u_id = $u_id;

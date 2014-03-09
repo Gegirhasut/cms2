@@ -6,7 +6,7 @@ class Controller extends SmartyController
 {
     function post () {
         require_once('Helpers/ObjectParser.php');
-        require_once('Models/LoginUser.php');
+        Application::requireClass('LoginUser', 'User');
         require_once('Helpers/json.php');
 
         $user = new LoginUser();

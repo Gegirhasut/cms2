@@ -12,7 +12,7 @@ class Controller
         $class = Router::$path[1];
         $identity = (int) Router::$path[0];
 
-        require_once('Models/' . $class . '.php');
+        Application::requireClass($class);
         $object = new ReflectionClass($class);
         $object = $object->newInstance();
 

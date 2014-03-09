@@ -1,6 +1,6 @@
 <?php
 require_once ('Database/DBFactory.php');
-require_once('Models/Activation.php');
+Application::requireClass('Activation');
 
 class Controller
 {
@@ -12,7 +12,7 @@ class Controller
         $activations = $db->select('a_id, u_id')->from($activation->table)->where("code = '$code'")->fetch();
 
         if (!empty($activations)) {
-            require_once('Models/User.php');
+            Application::requireClass('User');
             $user = new User();
             $user->u_id = $activations[0]['u_id'];
             $user->status = 1;

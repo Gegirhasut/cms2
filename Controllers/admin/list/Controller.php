@@ -59,7 +59,7 @@ class Controller extends BaseAdminController
                 switch ($field_properties['type']) {
                     case 'select':
                         if (!isset($field_properties['values']) && isset($relationValues[$field])) {
-                            require_once('Models/' . $field_properties['relation']['join'] . '.php');
+                            Application::requireClass($field_properties['relation']['join']);
                             $join = new ReflectionClass($field_properties['relation']['join']);
                             $join = $join->newInstance();
 
@@ -90,7 +90,7 @@ class Controller extends BaseAdminController
         }
 
         $class = Router::$path[0];
-        require_once('Models/' . $class . '.php');
+        Application::requireClass($class);
         $object = new ReflectionClass($class);
         $object = $object->newInstance();
 

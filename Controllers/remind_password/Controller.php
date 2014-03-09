@@ -8,7 +8,7 @@ class Controller extends SmartyController
 
     function post () {
         require_once('Helpers/ObjectParser.php');
-        require_once('Models/RemindPassword.php');
+        Application::requireClass('RemindPassword');
         require_once('Helpers/json.php');
 
         $remindPassword = new RemindPassword();
@@ -20,7 +20,7 @@ class Controller extends SmartyController
             exit;
         }
 
-        require_once('Models/User.php');
+        Application::requireClass('User');
         $user = new User();
         $user = $this->db->select()->from($user->table)->where("email = '" . $this->db->escape($remindPassword->email) . "'")->fetch();
 

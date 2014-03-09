@@ -5,7 +5,7 @@ class UserLogin {
         require_once ('Database/DBFactory.php');
         $db = DBFactory::getInstance('mysql', $GLOBALS['mysql']);
 
-        require_once('Models/User.php');
+        Application::requireClass('User');
         $user = new User();
 
         $user = $db->select('*')->from($user->table)->where($user->identity . " = $id")->fetch();
@@ -28,7 +28,7 @@ class UserLogin {
         require_once ('Database/DBFactory.php');
         $db = DBFactory::getInstance('mysql', $GLOBALS['mysql']);
 
-        require_once('Models/User.php');
+        Application::requireClass('User');
         $user = new User();
 
         $user = $db->select('*')
