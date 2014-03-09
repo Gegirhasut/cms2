@@ -6,13 +6,16 @@
                     <div class="form-group" id="key_{$key}">
                         <label for="{$key}" class="col-sm-{$form.label_width} control-label">{$field.title}</label>
                         <div class="col-sm-{$form.field_width}">
-                            {if $field.type eq 'select'}
-                                <input type="hidden" name="{$key}" id="{$key}" style="width:100%" value="{$form.value[$key]}" placeholder="{$field.placeholder}">
-                            {elseif $field.type eq 'password'}
-                                <input type="{$field.type}" class="form-control" id="{$key}" name="{$key}" placeholder="{$field.placeholder}">
+                            {assign var="file_name" value=$field.type}
+                            {assign var="file_name_full" value=Html/templates/units/fields/$file_name.tpl}
+                            {assign var="file_name_tpl" value=units/fields/$file_name.tpl}
+
+                            {if file_exists($file_name_full)}
+                                {include file=$file_name_tpl}
                             {else}
                                 <input type="{$field.type}" class="form-control" id="{$key}" name="{$key}" value="{$form.value[$key]}" placeholder="{$field.placeholder}">
                             {/if}
+                            
                             {if isset ($field.help_block)}
                                 <span class="help-block">{$field.help_block}</span>
                             {/if}

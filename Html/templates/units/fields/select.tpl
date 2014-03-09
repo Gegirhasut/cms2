@@ -1,0 +1,1 @@
+<input type="hidden" name="{$key}" id="{$key}" style="width:100%" value="{$form.value[$key]}" placeholder="{$field.placeholder}">

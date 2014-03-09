@@ -1,0 +1,1 @@
+<input type="{$field.type}" class="form-control" id="{$key}" name="{$key}" placeholder="{$field.placeholder}">
