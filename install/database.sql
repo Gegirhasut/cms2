@@ -36,3 +36,15 @@ create table at_change_email
  UNIQUE(code, email, u_id)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_remind_password
+(
+ rp_id int(11) NOT NULL auto_increment,
+ u_id int(11) NOT NULL,
+ code varchar(32) not null,
+ email varchar(255) NOT NULL DEFAULT '',
+ PRIMARY KEY (rp_id),
+ INDEX (code),
+ UNIQUE(code, email)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;

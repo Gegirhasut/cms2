@@ -67,7 +67,7 @@ class MySQL implements IDatabase
         return $this;
     }
 
-    public function select ($field) {
+    public function select ($field = '*') {
         $this->sql = "SELECT $field ";
         return $this;
     }

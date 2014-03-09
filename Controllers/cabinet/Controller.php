@@ -64,6 +64,14 @@ class Controller extends SmartyController
         }
 
         if ($user->email != $_SESSION['user_auth']['email']) {
+            $check_user = $this->db->select()->from($user->table)->where("email = '{$user->email}'")->fetch();
+            
+            if (!empty($check_user)) {
+                $user->error[] = array ('name' => 'email', 'message' => 'unique');
+                echo arrayToJson(array('error' => $user->error));
+                exit;
+            }
+
             $this->changeEmailRequest($user->email);
             $user->email = $_SESSION['user_auth']['email'];
         }

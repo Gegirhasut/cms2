@@ -46,7 +46,9 @@ class ObjectParser {
                             $error = empty($field['value']);
                             break;
                         case 'email':
-                            $error = !filter_var($field['value'], FILTER_VALIDATE_EMAIL);
+                            if (isset($field['value'])) {
+                                $error = !filter_var($field['value'], FILTER_VALIDATE_EMAIL);
+                            }
                             break;
                         case 'password2':
                             if (isset($field['value'])) {

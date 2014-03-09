@@ -1,6 +1,7 @@
 <link href="/Libs/Bootstrap-3.1.0/css/select2.css" rel="stylesheet"/>
 <script src="/Libs/Bootstrap-3.1.0/js/select2.js"></script>
 <script src="/js/app/form.js"></script>
+<script src="/js/app/location.js"></script>
 
 <div class="row">
     <div class="col-md-12">
@@ -10,7 +11,7 @@
 <br>
 <div class="row">
     <div class="col-md-12">
-        <form role="form" class="form-horizontal" method="post" id="form_reg" action="/registration">
+        <form role="form" class="form-horizontal" method="post" id="form" action="/registration">
             <div class="form-group">
                 <label for="fio" class="col-sm-2 control-label">ФИО</label>
                 <div class="col-sm-4">
@@ -83,7 +84,7 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-                <button type="submit" class="btn btn-default" id="register_btn">Зарегистрироваться</button>
+                <button type="submit" class="btn btn-default" id="form_btn">Зарегистрироваться</button>
             </div>
         </div>
 

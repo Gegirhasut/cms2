@@ -17,7 +17,7 @@ interface IDatabase {
      * @param $field
      * @return IDatabase
      */
-    public function select ($field);
+    public function select ($field = null);
     /**
      * @param $field
      * @return IDatabase

@@ -15,7 +15,9 @@ class Email
 	
 	public function Send($to, $subject, $reply = null, $copy = true)
 	{
-		//echo "[$to]";
+        $base_template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/Email/Templates/base.html");
+        $this->_body = str_replace("[content]", $this->_body, $base_template);
+
 		if ($reply == null) {
 			$reply = $GLOBALS['from'];
 		}

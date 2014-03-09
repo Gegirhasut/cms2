@@ -21,7 +21,7 @@ class User extends Base
         'password' => array ('type' => 'password', 'title' => 'Пароль', 'check' => array ('not_empty')),
         'password2' => array ('nondb' => 1, 'type' => 'password', 'title' => 'Пароль', 'check' => array ('password2', 'not_empty'), 'password_field' => 'password'),
         'type' => array ('type' => 'select', 'title' => 'Тип аккаунта', 'values' => array ('1' => 'Учитель', '2' => 'Ученик')),
-        'email' => array ('type' => 'text', 'title' => 'Email', 'check' => array ('email')),
+        'email' => array ('type' => 'text', 'title' => 'Email', 'check' => array ('email', 'not_empty')),
         'fio' => array ('type' => 'text', 'title' => 'Имя', 'check' => array ('not_empty')),
         'zip' => array ('type' => 'text', 'title' => 'Почтовый код'),
         'country' => array (
