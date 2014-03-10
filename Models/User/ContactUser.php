@@ -25,6 +25,6 @@ class ContactUser extends Base
             'placeholder' => 'Введите дополнительную информацию о Вас'
         ),
         'use_contact_form' => array ('type' => 'checkbox', 'title' => 'Использовать форму связи'),
-        'user_pic' => array ('type' => 'image', 'title' => 'Мини-фото', 'placeholder' => 'Рекомендуем загрузить мини-картинку.'),
+        'user_pic' => array ('type' => 'image', 'title' => 'Мини-фото', 'placeholder' => 'Рекомендуем загрузить мини-картинку.<br>Для этого:<br>1. Нажмите кнопку "Выберите файл".<br>2. Выберите файл с диска.<br>3. Нажмите кнопку "Загрузить картинку".'),
     );
 }
