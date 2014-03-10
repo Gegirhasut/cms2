@@ -36,7 +36,7 @@ function runBlock(block, kv) {
 }
 
 function showOverlay(text) {
-    $('<div class="modal-backdrop fade in" style="z-index: 1;"></div><div class="loader">' + text + '</div>').appendTo(document.body);
+    $('<div class="modal-backdrop fade in" style="z-index: 1002;"></div><div class="loader">' + text + '</div>').appendTo(document.body);
 }
 
 function hideOverlay() {

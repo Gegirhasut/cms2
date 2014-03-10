@@ -21,8 +21,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="/js/admin/admin.js"></script>
-    <script src="/js/admin/upload.js"></script>
-    <script src="/js/admin/ajaxfileupload.js"></script>
+    <script src="/js/app/upload/upload.js"></script>
+    <script src="/js/app/upload/ajaxfileupload.js"></script>
     <script src="/js/app/jquery.Jcrop.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->

@@ -5,11 +5,6 @@ require_once ('Controllers/admin/api/BaseApiController.php');
 class Controller extends BaseApiController
 {
     function post () {
-        if (!isset($_SESSION['admin_auth'])) {
-            throw new Exception("Unable to use API. Bad user!");
-            exit;
-        }
-
         if (count(Router::$path) < 1) {
             throw new Exception("Unable to use API. No object defined, wrong request: " . $_SERVER['REQUEST_URI']);
             exit;

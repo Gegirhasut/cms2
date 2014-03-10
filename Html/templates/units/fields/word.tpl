@@ -4,7 +4,7 @@
 <script src="/Libs/Bootstrap-3.1.0/js/bootstrap3-wysihtml5.js" type="text/javascript"></script>
 <script src="/Libs/Bootstrap-3.1.0/locales/bootstrap-wysihtml5.ru-RU.js" type="text/javascript"></script>
 
-<textarea id="{$key}" name="{$key}" placeholder="{$field.placeholder}" cols="80" rows="5">{$form.value[$key]}</textarea>
+<textarea id="{$key}" name="{$key}" placeholder="{$field.placeholder}" style="width:100%;" rows="5">{$form.value[$key]}</textarea>
 
 <script type="text/javascript">
     $('#{$key}').wysihtml5({ldelim}

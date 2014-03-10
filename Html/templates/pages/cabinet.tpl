@@ -15,7 +15,7 @@
                 <a href="{if isset($activation)}javascript:;{else}/cabinet{/if}">Персональные данные</a>
             </li>
             <li {if $cabinet_page eq 'contacts'}class="active"{/if} {if isset($activation)}class="disabled"{/if}>
-                <a href="{if isset($activation)}javascript:;{else}/cabinet/contacts{/if}">Контактная информация</a>
+                <a href="{if isset($activation)}javascript:;{else}/cabinet/contacts{/if}">Дополнительная информация о Вас</a>
             </li>
             <li {if $cabinet_page eq 'messages'}class="active"{/if} {if isset($activation)}class="disabled"{/if}>
                 <a href="{if isset($activation)}javascript:;{else}/cabinet/messages{/if}">Сообщения</a>

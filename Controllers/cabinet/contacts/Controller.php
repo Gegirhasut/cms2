@@ -62,6 +62,7 @@ class Controller extends SmartyController
             'form',
             array(
                 'model' => $user,
+                'class' => 'User',
                 'action' => '/cabinet/contacts',
                 'action_name' => 'Сохранить',
                 'label_width' => 3,
