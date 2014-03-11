@@ -9,11 +9,11 @@
 
     <title>Сайт</title>
 
-    <link href="/Libs/Bootstrap-3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <!-- <link href="/Libs/Bootstrap-3.1.0/css/non-responsive.css" rel="stylesheet"> -->
     <link href="/css/app/main.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="/js/app/main.js"></script>
-    <script src="/Libs/Bootstrap-3.1.0/js/bootstrap.min.js"></script>
-    <script src="/Libs/Bootstrap-3.1.0/js/bootstrap-tooltip.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <!-- <script src="/Libs/Bootstrap-3.1.0/js/bootstrap-tooltip.js"></script> -->
 </head>

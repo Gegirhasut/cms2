@@ -146,5 +146,5 @@ function cancelUpload(object) {
 function deleteImage(field) {
     $('#small_image_' + field + ' img').remove();
     $('#small_image_' + field + ' input').val('');
-    $('#remove').hide();
+    $('#remove_' + field).hide();
 }

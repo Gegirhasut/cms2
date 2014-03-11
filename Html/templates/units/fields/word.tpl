@@ -4,13 +4,14 @@
 <script src="/Libs/Bootstrap-3.1.0/js/bootstrap3-wysihtml5.js" type="text/javascript"></script>
 <script src="/Libs/Bootstrap-3.1.0/locales/bootstrap-wysihtml5.ru-RU.js" type="text/javascript"></script>
 
-<textarea id="{$key}" name="{$key}" placeholder="{$field.placeholder}" style="width:100%;" rows="5">{$form.value[$key]}</textarea>
+<textarea id="{$key}" name="{$key}" placeholder="{$field.placeholder}" style="width:100%;" rows="10">{$form.value[$key]}</textarea>
 
 <script type="text/javascript">
+    $.fn.wysihtml5.locale["ru-RU"].emphasis = {ldelim} bold: "B", italic: "I", underline: "U" {rdelim};
     $('#{$key}').wysihtml5({ldelim}
         "font-styles": false,
         "emphasis": true,
-        "lists": false,
+        "lists": true,
         "html": false,
         "link": true,
         "image": false,
