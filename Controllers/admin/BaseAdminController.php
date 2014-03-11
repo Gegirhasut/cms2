@@ -37,7 +37,7 @@ class BaseAdminController
                         'Города' => array ('url' => '/admin/list/City/'),
                     )
                 ),
-                'Предметы' => array ('dropdown' =>
+                'Обучение' => array ('dropdown' =>
                     array(
                         'Рубрики' => array ('url' => '/admin/list/Rubric/'),
                         'Предметы' => array ('url' => '/admin/list/Subject/'),

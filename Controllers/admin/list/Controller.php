@@ -104,11 +104,15 @@ class Controller extends BaseAdminController
         $db = $db->select('SQL_CALC_FOUND_ROWS *')
             ->from($object->table);
 
-        if (isset($_SESSION[$class]['order'])) {
+        if (isset($object->sort)) {
+            $db = $db->orderBy($object->sort);
+        } elseif (isset($_SESSION[$class]['order'])) {
             $db = $db->orderBy($_SESSION[$class]['order']['by'], $_SESSION[$class]['order']['direction']);
         } else {
             $db = $db->orderBy($object->identity);
         }
+
+
 
         $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 

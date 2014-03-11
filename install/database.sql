@@ -48,3 +48,14 @@ create table at_remind_password
  UNIQUE(code, email)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_rubrics
+(
+ r_id int(11) NOT NULL auto_increment,
+ title varchar(30) NOT NULL DEFAULT '',
+ r_url varchar(30) NOT NULL DEFAULT '',
+ sort  int(11) NOT NULL DEFAULT 9999,
+ PRIMARY KEY (r_id),
+ INDEX (sort)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;
