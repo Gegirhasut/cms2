@@ -41,6 +41,7 @@ class BaseAdminController
                     array(
                         'Рубрики' => array ('url' => '/admin/list/Rubric/'),
                         'Предметы' => array ('url' => '/admin/list/Subject/'),
+                        'Пользователь - Предметы' => array ('url' => '/admin/list/UserSubject/'),
                     )
                 ),
             );

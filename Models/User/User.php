@@ -5,6 +5,7 @@ class User extends Base
 {
     public $table = 'at_users';
     public $identity = 'u_id';
+    public $api_fields = array('u_id' => 1, 'email' => 1);
 
     public $images = array(
         'small_path' => 'images/userpics/small',

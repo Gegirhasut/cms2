@@ -59,3 +59,26 @@ create table at_rubrics
  INDEX (sort)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_subjects
+(
+ s_id int(11) NOT NULL auto_increment,
+ subject varchar(50) NOT NULL DEFAULT '',
+ url varchar(50) NOT NULL DEFAULT '',
+ r_id int(11) NOT NULL,
+ PRIMARY KEY (s_id)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_user_subjects
+(
+ us_id int(11) NOT NULL auto_increment,
+ u_id int(11) NOT NULL,
+ s_id int(11) NOT NULL,
+ duration int(11) NOT NULL,
+ cost double(9,2) NOT NULL,
+ PRIMARY KEY (us_id),
+ INDEX (u_id),
+ UNIQUE(u_id, s_id)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;

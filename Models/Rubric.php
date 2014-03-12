@@ -6,6 +6,7 @@ class Rubric extends Base
     public $table = 'at_rubrics';
     public $identity = 'r_id';
     public $sort = 'sort';
+    public $api_fields = array('r_id' => 1, 'title' => 1);
 
     public $fields = array (
         'r_id' => array ('type' => 'integer', 'nolist' => 1),

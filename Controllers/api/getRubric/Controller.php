@@ -4,10 +4,7 @@ require_once ('Database/DBFactory.php');
 class Controller
 {
     function post () {
-        if (empty($_GET['title'])) {
-            exit;
-        }
-        $class = 'Country';
+        $class = 'Rubric';
 
         if (!Application::requireClass($class)) {
             throw new Exception("Unable to use API. Wrong Object [$class]. Request: " . $_SERVER['REQUEST_URI']);
@@ -29,7 +26,7 @@ class Controller
 
         $where = null;
 
-        $db = $db->select('country_id as id, title as text')
+        $db = $db->select('r_id as id, title as text')
             ->from($object->table);
 
         if (!is_null($where)) {

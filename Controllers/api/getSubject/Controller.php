@@ -4,10 +4,7 @@ require_once ('Database/DBFactory.php');
 class Controller
 {
     function post () {
-        if (empty($_GET['title'])) {
-            exit;
-        }
-        $class = 'Country';
+        $class = 'Subject';
 
         if (!Application::requireClass($class)) {
             throw new Exception("Unable to use API. Wrong Object [$class]. Request: " . $_SERVER['REQUEST_URI']);
@@ -27,16 +24,14 @@ class Controller
          */
         $db = DBFactory::getInstance('mysql', $GLOBALS['mysql']);
 
-        $where = null;
+        $where = 'r_id = ' . (int) $_GET['r_id'];
 
-        $db = $db->select('country_id as id, title as text')
+        $db = $db->select('s_id as id, subject as text')
             ->from($object->table);
 
-        if (!is_null($where)) {
-            $db = $db->where($where);
-        }
+        $db = $db->where($where);
 
-        $records = $db->orderBy('title')->fetch();
+        $records = $db->orderBy('subject')->fetch();
 
         require_once('Helpers/json.php');
         echo arrayToJson($records);
