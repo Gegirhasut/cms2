@@ -9,8 +9,8 @@
             </div>
             <div class="col-md-3">
                 <ul class="bs-docs-footer-links muted">
-                    <li><a href="/">О нас</a></li>
-                    <li><a href="/">Контакты</a></li>
+                    <li><a href="/page/about">О нас</a></li>
+                    <li><a href="/page/contacts">Контакты</a></li>
                 </ul>
             </div>
         </div>

@@ -82,3 +82,15 @@ create table at_user_subjects
  UNIQUE(u_id, s_id)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_pages
+(
+ s_id int(11) NOT NULL auto_increment,
+ title varchar(255) NOT NULL,
+ description varchar(255) NOT NULL,
+ keywords varchar(255) NOT NULL,
+ url varchar(255) NOT NULL,
+ text text NOT NULL,
+ PRIMARY KEY (s_id)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;

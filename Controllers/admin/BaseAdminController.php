@@ -44,6 +44,11 @@ class BaseAdminController
                         'Пользователь - Предметы' => array ('url' => '/admin/list/UserSubject/'),
                     )
                 ),
+                'Сайт' => array ('dropdown' =>
+                    array(
+                        'Разделы сайта' => array ('url' => '/admin/list/Page/'),
+                    )
+                ),
             );
 
             $this->smarty->assign('menu', $admin_menu);
