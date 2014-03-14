@@ -72,5 +72,10 @@ interface IDatabase {
      */
     public function update ($object);
 
+    /**
+     * @return IDatabase
+     */
+    public function union ();
+
     public function lastId();
 }

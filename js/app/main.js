@@ -43,3 +43,20 @@ function hideOverlay() {
     $(".modal-backdrop").remove();
     $(".loader").remove();
 }
+
+/*  Cabinet JS */
+var s_id = 0;
+function showRemoveSubject(subject) {
+    s_id = subject;
+    $('#modal_remove').modal('show');
+}
+
+function removeSubject() {
+    $.get('/api/delete/UserSubject/' + s_id, function (data) {
+        if (data != 0) {
+            $('#subject_' + data).remove();
+        }
+
+        $('#modal_remove').modal('hide');
+    });
+}

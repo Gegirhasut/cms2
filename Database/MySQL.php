@@ -8,6 +8,8 @@ class MySQL implements IDatabase
      */
     public $mysqli = null;
 
+    protected $union = false;
+
     public function connect ($params) {
         if (!is_null($this->mysqli)) {
             return $this->mysqli;
@@ -34,6 +36,10 @@ class MySQL implements IDatabase
     }
 
     public function fetch ($id = null, $field = null) {
+        if (strpos($this->sql, 'UNION') !== false) {
+            $this->sql = '(' . $this->sql . ')';
+        }
+
         if (isset($_GET['debug'])) {
             echo $this->sql . "<br>";
         }
@@ -68,7 +74,12 @@ class MySQL implements IDatabase
     }
 
     public function select ($field = '*') {
-        $this->sql = "SELECT $field ";
+        if ($this->union) {
+            $this->union = false;
+            $this->sql .= ") UNION (SELECT $field ";
+        } else {
+            $this->sql = "SELECT $field ";
+        }
         return $this;
     }
     public function from ($table) {
@@ -143,6 +154,12 @@ class MySQL implements IDatabase
         }
 
         $this->sql = "UPDATE {$object->table} SET $update WHERE {$object->identity} = " . $object->fields[$object->identity]['value'];
+
+        return $this;
+    }
+
+    public function union () {
+        $this->union = true;
 
         return $this;
     }

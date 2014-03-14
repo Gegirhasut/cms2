@@ -5,7 +5,7 @@
             <h2>онлайн ассоциация</h2>
         </div>
         <ol class="list-unstyled menu-left">
-            <li><a href="/">Предметы</a></li>
+            <li><a href="/subjects/">Предметы</a></li>
             <li><a href="/">БИЗНЕС ТРЕНИНГИ</a></li>
             <li><a href="/">ЛИЧНОСТНЫЙ РОСТ</a></li>
             <li><a href="/">ВЕБИНАРЫ</a></li>
@@ -82,54 +82,20 @@
 </div>
 <div>
     <div class="row search">
-        <div class="col-md-3">
-            <span class="title">Языки</span>
-            <ul>
-                <li><a href="/">английский язык</a></li>
-                <li><a href="/">немецкий язык</a></li>
-                <li><a href="/">китайский язык</a></li>
-                <li><a href="/">итальянский язык</a></li>
-                <li><a href="/">японский язык</a></li>
-                <li><a href="/">испанский язык</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3">
-            <span class="title">Академические</span>
-            <ul>
-                <li><a href="/">физика</a></li>
-                <li><a href="/">математика</a></li>
-                <li><a href="/">химия</a></li>
-                <li><a href="/">литература</a></li>
-                <li><a href="/">психология</a></li>
-                <li><a href="/">астроноимя</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3">
-            <span class="title">Творчество</span>
-            <ul>
-                <li><a href="/">рисование</a></li>
-                <li><a href="/">игра на пианино</a></li>
-                <li><a href="/">игра на скрипке</a></li>
-                <li><a href="/">игра на гитаре</a></li>
-                <li><a href="/">игра на баяне</a></li>
-                <li><a href="/">ударники</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3">
-            <span class="title">АйТи</span>
-            <ul>
-                <li><a href="/">Веб программирование</a></li>
-                <li><a href="/">Photoshop</a></li>
-                <li><a href="/">Администрирование</a></li>
-                <li><a href="/">Autocad</a></li>
-                <li><a href="/">Программирование</a></li>
-                <li><a href="/">Flash</a></li>
-            </ul>
-        </div>
+        {foreach from=$rubrics item=rubric}
+            <div class="col-md-3">
+                <span class="title">{$rubric.title}</span>
+                <ul>
+                    {foreach from=$rubric.subjects item=subject}
+                        <li><a href="/teachers/{$subject.url}/" title="{$subject.subject}">{$subject.subject}</a></li>
+                    {/foreach}
+                </ul>
+            </div>
+        {/foreach}
     </div>
     <div class="row search">
         <div class="col-md-12">
-            <span class="title"><a href="/">Расширенный поиск</a></span>
+            <span class="title"><a href="/teachers/">Расширенный поиск</a></span>
         </div>
     </div>
     <div class="row search" style="padding-top: 20px;">

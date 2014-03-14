@@ -26,6 +26,7 @@
         </form>
 
         <input type="hidden" id="help_width" value="{$form.help_width}" />
+        <input type="hidden" id="help_offset" value="{$form.help_offset}" />
 
         <div class="form-group">
             <div class="col-sm-offset-{$form.label_width}">

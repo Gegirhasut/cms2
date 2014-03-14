@@ -218,3 +218,10 @@ input[type="radio"], input[type="checkbox"] {
 .carousel-indicators {
     width: 40%;
 }
+
+.modal-dialog-center {
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+}

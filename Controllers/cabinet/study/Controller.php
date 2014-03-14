@@ -92,7 +92,8 @@ class Controller extends SmartyController
                 'action_name' => 'Добавить',
                 'label_width' => 4,
                 'field_width' => 6,
-                'help_width' => 5,
+                'help_width' => 12,
+                'help_offset' => 4,
                 'value' => $_SESSION['user_auth']
             )
         );

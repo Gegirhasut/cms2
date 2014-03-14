@@ -59,8 +59,13 @@ function parseFormResult() {
 
                 var message = result.error[i].message;
                 var help_width = $('#help_width').val();
+                var className = 'col-sm-' + help_width;
+                var help_offset = $('#help_offset').val();
+                if (help_offset != '') {
+                    className += ' col-sm-offset-' + help_offset;
+                }
 
-                var help_html = '<div class="col-sm-' + help_width + ' error"><span class="help-block control-label">' + message + '</span></div>';
+                var help_html = '<div class="' + className + ' error"><span class="help-block control-label">' + message + '</span></div>';
 
                 form_group.append(help_html);
             }

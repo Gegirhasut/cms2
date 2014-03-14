@@ -5,6 +5,7 @@ class UserSubject extends Base
 {
     public $table = 'at_user_subjects';
     public $identity = 'us_id';
+    public $api_operations = array ('delete' => array ('check_auth' => 'u_id'));
 
     public $fields = array (
         'us_id' => array ('type' => 'integer', 'nolist' => 1),
