@@ -4,7 +4,7 @@ require_once ('Database/DBFactory.php');
 
 class Controller extends SmartyController
 {
-    public $user_auth = true;
+    public $user_auth = false;
     public $db = null;
 
     function __construct() {
@@ -21,13 +21,11 @@ class Controller extends SmartyController
         $page = new Page();
         $pageUrl = Router::$path[0];
         if (empty($pageUrl)) {
-            header('location:/page/error404', 404);
-            exit;
+            throw new Exception404();
         }
         $pages = $this->db->select()->from($page->table)->where("url = '$pageUrl'")->fetch();
         if (empty($pages)) {
-            header('location:/page/error404', 404);
-            exit;
+            throw new Exception404();
         }
 
         $this->smarty->assign('title', $pages[0]['title']);

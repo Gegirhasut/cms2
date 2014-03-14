@@ -1,6 +1,8 @@
 <?php
 require_once('Router.php');
 
+class Exception404 extends Exception {};
+
 class Application
 {
     public static function requireClass($class, $fullClass = null) {
@@ -29,9 +31,16 @@ class Application
         $controller = new ReflectionClass('Controller');
         $c = $controller->newInstance();
 
-        if (!empty($_POST)) {
-            $c->post();
+        try {
+            if (!empty($_POST)) {
+                $c->post();
+            }
+            $c->display();
+        }catch (Exception404 $ex) {
+            require_once($controllerPath . '/404/Controller404.php');
+            $controller = new ReflectionClass('Controller404');
+            $c = $controller->newInstance();
+            $c->display();
         }
-        $c->display();
     }
 }
