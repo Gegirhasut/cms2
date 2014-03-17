@@ -78,6 +78,8 @@ class Controller extends BaseApiController
                 $image->resizeToHeight($object->images['maxh']);
             }
 
+            $image->save($to);
+
             $_SESSION['filePath_' . $_POST['field']] = $path . "/$fileName.$extension";
 
             $result = array();

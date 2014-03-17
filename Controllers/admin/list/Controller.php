@@ -112,8 +112,6 @@ class Controller extends BaseAdminController
             $db = $db->orderBy($object->identity);
         }
 
-
-
         $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
         $result = $db->limit(($page - 1) * $this->show_on_page   , $this->show_on_page)

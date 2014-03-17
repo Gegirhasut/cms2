@@ -18,6 +18,10 @@ class Base {
         return null;
     }
 
+    public function __isset($name) {
+        return isset($this->fields[$name]);
+    }
+
     public function __unset($name) {
         if (isset($this->fields[$name])) {
             unset($this->fields[$name]);

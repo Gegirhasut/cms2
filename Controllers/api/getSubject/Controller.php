@@ -26,6 +26,13 @@ class Controller
 
         $where = 'r_id = ' . (int) $_GET['r_id'];
 
+        if (!empty($_GET['title'])) {
+            $operator = '=';
+            $value = $_GET['title'];
+
+            $where .= " AND subject LIKE '" . $db->escape($value) . "%'";
+        }
+
         $db = $db->select('s_id as id, subject as text')
             ->from($object->table);
 

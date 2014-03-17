@@ -29,6 +29,13 @@ class Controller
 
         $where = null;
 
+        if (!empty($_GET['title'])) {
+            $operator = '=';
+            $value = $_GET['title'];
+
+            $where = "title LIKE '" . $db->escape($value) . "%'";
+        }
+
         $db = $db->select('country_id as id, title as text')
             ->from($object->table);
 

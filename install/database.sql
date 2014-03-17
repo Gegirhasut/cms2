@@ -1,19 +1,20 @@
 CREATE TABLE IF NOT EXISTS `at_users` (
-  `u_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` int(11) NOT NULL DEFAULT 2 COMMENT '1 - teacher, 2 - student',
-  `email` varchar(255) NOT NULL DEFAULT '',
-  `password` varchar(32) NOT NULL DEFAULT '',
-  `fio` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `zip` varchar(20) DEFAULT NULL,
-  `country` int(11) NOT NULL DEFAULT 0,
-   city int(11) NOT NULL DEFAULT 0,
-  `region` int(11) NOT NULL DEFAULT 0,
-  `status` int(11) not null DEFAULT 0 COMMENT '0 - not activated, 1 - activated, 2 - bann',
-  `user_pic` varchar(100) DEFAULT NULL,
-  `skype` varchar(100) DEFAULT NULL,
-  `use_contact_form` bool DEFAULT false,
-  `info` varchar(5000) NOT NULL DEFAULT '',
-  PRIMARY KEY (`u_id`)
+  u_id int(11) NOT NULL AUTO_INCREMENT,
+  type int(11) NOT NULL DEFAULT 2 COMMENT '1 - teacher, 2 - student',
+  email varchar(255) NOT NULL DEFAULT '',
+  password varchar(32) NOT NULL DEFAULT '',
+  fio varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  zip varchar(20) DEFAULT NULL,
+  country int(11) NOT NULL DEFAULT 0,
+  city int(11) NOT NULL DEFAULT 0,
+  region int(11) NOT NULL DEFAULT 0,
+  status int(11) not null DEFAULT 0 COMMENT '0 - not activated, 1 - activated, 2 - bann',
+  user_pic varchar(100) DEFAULT NULL,
+  skype varchar(100) DEFAULT NULL,
+  use_contact_form bool DEFAULT false,
+  info varchar(5000) NOT NULL DEFAULT '',
+  messages int(11) DEFAULT 0,
+  PRIMARY KEY (u_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 create table at_activations
@@ -64,6 +65,7 @@ create table at_subjects
 (
  s_id int(11) NOT NULL auto_increment,
  subject varchar(50) NOT NULL DEFAULT '',
+ subject_po varchar(100) NOT NULL DEFAULT '',
  url varchar(50) NOT NULL DEFAULT '',
  r_id int(11) NOT NULL,
  PRIMARY KEY (s_id)
@@ -92,5 +94,20 @@ create table at_pages
  url varchar(255) NOT NULL,
  text text NOT NULL,
  PRIMARY KEY (s_id)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_messages
+(
+ m_id int(11) NOT NULL auto_increment,
+ subject varchar(255) NOT NULL DEFAULT '',
+ message varchar(5000) NOT NULL DEFAULT '',
+ u_id_from int(11) NOT NULL,
+ u_id_to int(11) NOT NULL,
+ readed boolean DEFAULT 0,
+ posted_time timestamp DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (m_id),
+ INDEX (u_id_from, posted_time),
+ INDEX (u_id_to, posted_time)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;

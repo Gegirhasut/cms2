@@ -35,6 +35,14 @@ class MySQL implements IDatabase
         }
     }
 
+    public function sql ($sql) {
+        $result = $this->mysqli->query($sql);
+
+        if (!$result) {
+            throw new Exception('Error executing SQL query : ' . $sql . '. Error: ' . $this->mysqli->error);
+        }
+    }
+
     public function fetch ($id = null, $field = null) {
         if (strpos($this->sql, 'UNION') !== false) {
             $this->sql = '(' . $this->sql . ')';
@@ -94,6 +102,10 @@ class MySQL implements IDatabase
         $this->sql .= ' JOIN ' . $table . ' ' . $on;
         return $this;
     }
+    public function innerJoin ($table, $on) {
+        $this->sql .= ' INNER JOIN ' . $table . ' ' . $on;
+        return $this;
+    }
     public function leftJoin ($table, $on) {
         $this->sql .= ' LEFT JOIN ' . $table . ' ' . $on;
         return $this;
@@ -110,6 +122,11 @@ class MySQL implements IDatabase
 
     public function orderBy ($by, $direction = 'ASC') {
         $this->sql .= " ORDER BY $by $direction";
+        return $this;
+    }
+
+    public function groupBy ($by) {
+        $this->sql .= " GROUP BY $by";
         return $this;
     }
 

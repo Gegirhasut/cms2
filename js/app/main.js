@@ -60,3 +60,40 @@ function removeSubject() {
         $('#modal_remove').modal('hide');
     });
 }
+
+var last_message = false;
+$( document ).ready(function() {
+    $('.message').bind("click touchstart", function(event) {
+        var id = event.currentTarget.id;
+        id = id.substr(8);
+        window.location.href = "/cabinet/messages/" + id;
+    });
+
+    var scroll = $('#scroll');
+
+    if (scroll.length != 0) {
+        var height = scroll[0].scrollHeight;
+        scroll.scrollTop(height);
+
+        scroll.scroll(function () {
+            if (scroll.scrollTop() == 0 && !last_message) {
+                var trs = $('.table tr');
+                if (trs.length > 0) {
+                    var id = $(trs[0]).attr('id').substr(5);
+                    $.get(window.location.href + '?ajax&from=' + id, function(data)
+                    {
+                        if (data != '') {
+                            var h1 = scroll[0].scrollHeight;
+                            $('#scroll .table tr:first').before(data);
+                            var h2 = scroll[0].scrollHeight;
+                            var delta = h2 - h1;
+                            scroll.scrollTop(delta);
+                        } else {
+                            last_message = true;
+                        }
+                    });
+                }
+            }
+        });
+    }
+});

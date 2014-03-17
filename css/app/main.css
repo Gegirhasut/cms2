@@ -225,3 +225,14 @@ input[type="radio"], input[type="checkbox"] {
     top: 45%;
     left: 45%;
 }
+.user_info .row {
+    padding-bottom: 10px;
+}
+
+.message {
+    cursor: pointer;
+}
+
+td.no {
+    border-top: 0px!important;
+}

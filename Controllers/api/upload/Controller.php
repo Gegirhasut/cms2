@@ -1,6 +1,6 @@
 <?php
 require_once ('Database/DBFactory.php');
-require_once ('Controllers/admin/api/BaseApiController.php');
+require_once ('Controllers/api/BaseApiController.php');
 
 class Controller extends BaseApiController
 {
@@ -72,6 +72,8 @@ class Controller extends BaseApiController
             if ($image->getHeight() > $object->images['maxh']) {
                 $image->resizeToHeight($object->images['maxh']);
             }
+
+            $image->save($to);
 
             $_SESSION['filePath_' . $_POST['field']] = $path . "/$fileName.$extension";
 

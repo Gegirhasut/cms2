@@ -10,7 +10,7 @@ class RegistrationUser extends Base
         'u_id' => array ('type' => 'integer', 'nolist' => 1),
         'fio' => array (
             'type' => 'text',
-            'title' => 'ФМО',
+            'title' => 'ФИО',
             'check' => array ('not_empty'),
             'placeholder' => 'Введите Ваше ФИО'
         ),

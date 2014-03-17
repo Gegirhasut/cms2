@@ -20,11 +20,9 @@
             <li {if $cabinet_page eq 'study'}class="active"{/if} {if isset($activation)}class="disabled"{/if}>
                 <a href="{if isset($activation)}javascript:;{else}/cabinet/study{/if}">Обучение</a>
             </li>
-            <!--
-            <li {if $cabinet_page eq 'messages'}class="active"{/if} {if isset($activation)}class="disabled"{/if}>
-                <a href="{if isset($activation)}javascript:;{else}/cabinet/messages{/if}">Сообщения</a>
+            <li {if $cabinet_page eq 'messages' || $cabinet_page eq 'messages_with'}class="active"{/if} {if isset($activation)}class="disabled"{/if}>
+                <a href="{if isset($activation)}javascript:;{else}/cabinet/messages{/if}">Сообщения{if $messages_cnt neq 0} <span class="badge">{$messages_cnt}</span>{/if}</a>
             </li>
-            -->
         </ul>
     </div>
 </div>

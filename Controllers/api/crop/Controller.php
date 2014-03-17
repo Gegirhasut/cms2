@@ -1,6 +1,6 @@
 <?php
 require_once ('Database/DBFactory.php');
-require_once ('Controllers/admin/api/BaseApiController.php');
+require_once ('Controllers/api/BaseApiController.php');
 
 class Controller extends BaseApiController
 {

@@ -37,7 +37,7 @@ class Application
             }
             $c->display();
         }catch (Exception404 $ex) {
-            require_once($controllerPath . '/404/Controller404.php');
+            require_once('Controllers/page/404/Controller404.php');
             $controller = new ReflectionClass('Controller404');
             $c = $controller->newInstance();
             $c->display();

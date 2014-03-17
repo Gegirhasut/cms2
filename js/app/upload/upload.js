@@ -64,14 +64,29 @@ function ajaxFileUpload(fileId, object, field, action)
                     filePath = data.filePath;
                     fieldName = data.field;
 
-                    $('#jcrop_target').Jcrop({
-                        onChange: showPreview,
-                        onSelect: showPreview,
-                        setSelect: [0,0,data.picw, data.pich],
-                        aspectRatio: data.picw / data.pich
-                    }, function() {
-                        jcrop_api = this;
+                    $("#jcrop_target").one('load', function() {
+                        var new_height = $(window).height() - 240;
+
+                        if (parseInt($('#jcrop_target').css('height')) > new_height) {
+                            deltaH = parseInt($('#jcrop_target').css('height')) / new_height;
+                            var old_width = parseInt($('#jcrop_target').css('width'));
+                            $('#jcrop_target').css('height', new_height);
+                            deltaW = old_width / parseInt($('#jcrop_target').css('width'));
+                        }
+
+                        $('#jcrop_target').Jcrop({
+                            onChange: showPreview,
+                            onSelect: showPreview,
+                            setSelect: [0,0,data.picw, data.pich],
+                            aspectRatio: data.picw / data.pich
+                        }, function() {
+                            jcrop_api = this;
+                        });
+                    }).each(function() {
+                        if(this.complete) $(this).load();
                     });
+
+
 
                 },
                 error: function (data, status, e)
@@ -88,16 +103,18 @@ function ajaxFileUpload(fileId, object, field, action)
     return false;
 }
 
+var deltaH = 1;
+var deltaW = 1;
 function showPreview(coords)
 {
-    var rx = picW / coords.w;
-    var ry = picH / coords.h;
+    var rx = (picW / coords.w);
+    var ry = (picH / coords.h);
 
     $('#jcrop_preview').css({
-        width: Math.round(rx * realw) + 'px',
-        height: Math.round(ry * realh) + 'px',
-        marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-        marginTop: '-' + Math.round(ry * coords.y) + 'px'
+        width: Math.round(rx * realw / deltaW) + 'px',
+        height: Math.round(ry * realh / deltaH) + 'px',
+        marginLeft: '-' + Math.round(rx * coords.x ) + 'px',
+        marginTop: '-' + Math.round(ry * coords.y ) + 'px'
     });
 }
 
@@ -107,7 +124,7 @@ function createCropImage(object) {
     var obj = jcrop_api.tellSelect();
     $.post(
         actionUrl + "/crop/" + object,
-        {x: obj.x, y: obj.y, x2: obj.x2, y2: obj.y2, filePath : filePath, field: fieldName},
+        {x: obj.x * deltaW, y: obj.y * deltaH, x2: obj.x2 * deltaW, y2: obj.y2 * deltaH, filePath : filePath, field: fieldName},
         function (data) {
             try {
                 data = $.parseJSON(data);

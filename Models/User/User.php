@@ -13,8 +13,8 @@ class User extends Base
         'levels' => 2,
         'w' => 100,
         'h' => 100,
-        'maxw' => 500,
-        'maxh' => 500
+        'maxw' => 800,
+        'maxh' => 800
     );
 
     public $fields = array (
@@ -67,5 +67,6 @@ class User extends Base
         'skype' => array ('type' => 'text', 'title' => 'Skype'),
         'use_contact_form' => array ('type' => 'checkbox', 'title' => 'Использовать форму связи'),
         'info' => array ('type' => 'word', 'title' => 'Обо мне'),
+        'messages' => array ('type' => 'int', 'title' => 'Количество непрочитанных сообщений'),
     );
 }

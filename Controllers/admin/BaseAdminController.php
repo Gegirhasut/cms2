@@ -49,6 +49,7 @@ class BaseAdminController
                         'Разделы сайта' => array ('url' => '/admin/list/Page/'),
                     )
                 ),
+                'Сообщения' => array ('url' => '/admin/list/Message/'),
             );
 
             $this->smarty->assign('menu', $admin_menu);

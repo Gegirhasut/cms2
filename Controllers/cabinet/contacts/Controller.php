@@ -1,21 +1,9 @@
 <?php
-require_once('Controllers/SmartyController.php');
+require_once('Controllers/cabinet/BaseController.php');
 require_once ('Database/DBFactory.php');
 
-class Controller extends SmartyController
+class Controller extends BaseController
 {
-    public $user_auth = true;
-    public $db = null;
-
-    function __construct() {
-        /**
-         * var MySQL
-         */
-
-        $this->db = DBFactory::getInstance('mysql', $GLOBALS['mysql']);
-        parent::__construct();
-    }
-
     function post() {
         $_SESSION['cabinet_message'] = array();
 
@@ -45,10 +33,7 @@ class Controller extends SmartyController
     }
 
     function display () {
-        if ($_SESSION['user_auth']['status'] == 0) {
-            header('location: /cabinet');
-            exit;
-        }
+        $this->prepareCabinet();
 
         if (isset($_SESSION['cabinet_message'])) {
             $this->smarty->assign('cabinet_message', $_SESSION['cabinet_message']);

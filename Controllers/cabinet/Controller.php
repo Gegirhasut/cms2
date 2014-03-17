@@ -1,21 +1,9 @@
 <?php
-require_once('Controllers/SmartyController.php');
+require_once('Controllers/cabinet/BaseController.php');
 require_once ('Database/DBFactory.php');
 
-class Controller extends SmartyController
+class Controller extends BaseController
 {
-    public $user_auth = true;
-    public $db = null;
-
-    function __construct() {
-        /**
-         * var MySQL
-         */
-
-        $this->db = DBFactory::getInstance('mysql', $GLOBALS['mysql']);
-        parent::__construct();
-    }
-
     function changeEmailRequest($new_email) {
         Application::requireClass('ChangeEmail');
         $changeEmail = new ChangeEmail();
@@ -117,6 +105,8 @@ class Controller extends SmartyController
     }
 
     function display () {
+        $this->prepareCabinet(false);
+
         $this->smarty->assign('h1', 'Персональные данные');
         $this->smarty->assign('page', 'cabinet');
         $this->smarty->assign('cabinet_page', 'personal');

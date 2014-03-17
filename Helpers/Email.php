@@ -32,9 +32,7 @@ class Email
 			echo $this->_body;
 			exit;
 		}
-		/*echo "[$to],<br>[[$subject]]<br>" . $this->_body;
-		exit;*/
-		//echo $this->_body;
+
 		mail($to, $subject, $this->_body, $this->_getHeaders($reply));
 		if (strpos($to, $GLOBALS['admin']) === false && $copy) {
 			mail($GLOBALS['admin'], "[Ушло клиенту] " . $subject, $this->_body, $this->_getHeaders($reply));
