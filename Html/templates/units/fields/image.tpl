@@ -27,7 +27,7 @@
     <div class="input-group">
         <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
         <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Выбрать файл</span><span class="fileinput-exists">Изменить</span><input type="file" id="fileToUpload" name="fileToUpload"></span>
-        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Удалить</a>
+        <a href="#" class="input-group-addon btn btn-info fileinput-exists" data-dismiss="fileinput">Удалить</a>
     </div>
 </div>
 </form>

@@ -158,6 +158,25 @@ class MySQL implements IDatabase
         return $this;
     }
 
+    public function onduplicate($object) {
+        $this->sql .= " ON DUPLICATE KEY UPDATE ";
+
+        $duplicate = '';
+
+        foreach ($object->fields as $key => $field) {
+            if ($key != $object->identity) {
+                if (!empty($duplicate)) {
+                    $duplicate .= ',';
+                }
+                $duplicate .= "$key = " . $object->fields[$key]['value'];
+            }
+        }
+
+        $this->sql .= $duplicate;
+
+        return $this;
+    }
+
     public function update ($object) {
         $update = '';
 

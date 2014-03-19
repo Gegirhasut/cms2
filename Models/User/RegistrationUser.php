@@ -12,13 +12,15 @@ class RegistrationUser extends Base
             'type' => 'text',
             'title' => 'ФИО',
             'check' => array ('not_empty'),
-            'placeholder' => 'Введите Ваше ФИО'
+            'placeholder' => 'Введите Ваше ФИО',
+            'maxlength' => 255
         ),
         'email' => array (
             'type' => 'text',
             'title' => 'Email',
             'check' => array ('email', 'not_empty'),
-            'placeholder' => 'Введите email'
+            'placeholder' => 'Введите email',
+            'maxlength' => 255
         ),
         'password' => array (
             'type' => 'password',

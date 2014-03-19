@@ -12,14 +12,16 @@ class PersonalUser extends Base
             'type' => 'text',
             'title' => 'ФИО',
             'check' => array ('not_empty'),
-            'placeholder' => 'Ваше ФИО'
+            'placeholder' => 'Ваше ФИО',
+            'maxlength' => 255
         ),
         'email' => array (
             'type' => 'text',
             'title' => 'Email',
             'check' => array ('email', 'not_empty'),
             'help_block' => 'На новый email адрес будет выслано письмо с подтверждением операции изменения email',
-            'placeholder' => 'Ваш email'
+            'placeholder' => 'Ваш email',
+            'maxlength' => 255
         ),
         'password' => array (
             'type' => 'password',

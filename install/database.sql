@@ -68,7 +68,8 @@ create table at_subjects
  subject_po varchar(100) NOT NULL DEFAULT '',
  url varchar(50) NOT NULL DEFAULT '',
  r_id int(11) NOT NULL,
- PRIMARY KEY (s_id)
+ PRIMARY KEY (s_id),
+ INDEX (url)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
@@ -109,5 +110,19 @@ create table at_messages
  PRIMARY KEY (m_id),
  INDEX (u_id_from, posted_time),
  INDEX (u_id_to, posted_time)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_messages_log
+(
+ ml_id int(11) NOT NULL auto_increment,
+ m_id int(11) NOT NULL,
+ show_u int(11) NOT NULL,
+ is_out boolean DEFAULT 0,
+ another_u int(11) NOT NULL,
+ posted_time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ PRIMARY KEY (ml_id),
+ INDEX (show_u, posted_time),
+ UNIQUE (show_u, another_u)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;

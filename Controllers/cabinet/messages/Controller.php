@@ -56,6 +56,7 @@ class Controller extends BaseController
         $message->u_id_to = $u_id_to;
 
         $this->db->insert($message)->execute();
+        $m_id = $this->db->lastId();
 
         require_once('Helpers/Email.php');
         $email = new Email();
@@ -71,35 +72,49 @@ class Controller extends BaseController
 
         $this->db->sql("UPDATE at_users SET messages=messages+1 WHERE u_id = $u_id_to");
 
+        Application::requireClass('MessagesLog', 'Message');
+        $messagesLog = new MessagesLog();
+        $messagesLog->m_id = $m_id;
+        $messagesLog->show_u = $u_id_from;
+        $messagesLog->another_u = $u_id_to;
+        $messagesLog->is_out = 1;
+        $this->db->insert($messagesLog)->onduplicate($messagesLog)->execute();
+        $messagesLog->show_u = $u_id_to;
+        $messagesLog->another_u = $u_id_from;
+        $messagesLog->is_out = 0;
+        $this->db->insert($messagesLog)->onduplicate($messagesLog)->execute();
+
         echo arrayToJson(array('success' => '/cabinet/messages/' . $u_id_to));
         exit;
     }
 
-    function showMessages() {
+    function showMessages($messages_type) {
         Application::requireClass('Message');
         $message = new Message();
         Application::requireClass('User');
         $user = new User();
+        Application::requireClass('MessagesLog', 'Message');
+        $messagesLog = new MessagesLog();
 
-        /*$db = $this->db
-            ->select("SQL_CALC_FOUND_ROWS m1.m_id, m1.subject, m1.readed, m1.u_id_from, m1.posted_time, {$user->table}.fio, {$user->table}.user_pic")
-            ->from($message->table . ' as m1')
-            ->join($user->table, "ON {$user->table}.u_id = m1.u_id_from")
-            ->where("u_id_to = " . $_SESSION['user_auth']['u_id'] . ' AND posted_time = (SELECT MAX( posted_time ) FROM at_messages AS m2 WHERE m2.u_id_from = m1.u_id_from)')
-            ->orderBy('m1.posted_time', 'DESC')
-            ->limit(0, $this->countOnPage);*/
+        $whereMessagesType = '';
+        switch ($messages_type) {
+            case 'incoming':
+                $whereMessagesType = ' AND is_out = 0';
+                $this->smarty->assign('messages_type', 'новых входящих');
+                break;
+            case 'outgoing':
+                $this->smarty->assign('messages_type', 'новых исходящих');
+                $whereMessagesType = ' AND is_out = 1';
+                break;
+        }
 
-        $db = $this->db->select("SQL_CALC_FOUND_ROWS m_id, readed, at_messages.u_id_from, at_messages.u_id_to, posted_time, message, subject, {$user->table}.fio, {$user->table}.user_pic")
-            ->from("at_messages")
-            ->innerJoin("(SELECT u_id_from, MAX(POSTED_TIME) AS max_time
-                    FROM at_messages AS m2
-                    WHERE u_id_to={$_SESSION['user_auth']['u_id']}
-                    GROUP BY u_id_from
-                    ORDER BY max_time
-                    DESC LIMIT 0, {$this->countOnPage}
-                 )
-                 AS mt", "ON mt.u_id_from = at_messages.u_id_from AND mt.max_time=at_messages.posted_time"
-            )->join($user->table, "ON {$user->table}.u_id = at_messages.u_id_from");
+        $db = $this->db->select("SQL_CALC_FOUND_ROWS {$message->table}.m_id, readed, show_u, is_out, another_u, {$message->table}.posted_time, message, subject, {$user->table}.fio, {$user->table}.user_pic")
+            ->from($messagesLog->table)
+            ->join($user->table, "ON {$user->table}.u_id = {$messagesLog->table}.another_u")
+            ->join($message->table, "ON {$message->table}.m_id = {$messagesLog->table}.m_id")
+            ->where("show_u = " . $_SESSION['user_auth']['u_id'] . $whereMessagesType)
+            ->orderBy('posted_time', 'DESC')
+            ->limit(0, 50);
 
         $messages = $db->fetch();
 
@@ -186,10 +201,23 @@ class Controller extends BaseController
     function display () {
         $this->prepareCabinet();
 
+        $messages_type = 'all';
+        $user_id = null;
+
         if (isset(Router::$path[0])) {
-            $this->showMessagesWith(Router::$path[0]);
+            if (Router::$path[0] == 'incoming') {
+                $messages_type = 'incoming';
+            } elseif (Router::$path[0] == 'outgoing') {
+                $messages_type = 'outgoing';
+            } else {
+                $user_id = (int) Router::$path[0];
+            }
+        }
+
+        if (!is_null($user_id)) {
+            $this->showMessagesWith($user_id);
         } else {
-            $this->showMessages();
+            $this->showMessages($messages_type);
         }
 
         parent::display();

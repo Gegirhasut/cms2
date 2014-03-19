@@ -16,7 +16,7 @@
                 <div class="collapse navbar-collapse">
                     <div class="col-md-8">
                         <ul class="nav navbar-nav">
-                            <li><a href="/">Учителя</a></li>
+                            <li><a href="/teachers">Учителя</a></li>
                             <li><a href="/teachers/">Предметы</a></li>
                             <li><a href="/">Образовательные центры</a></li>
                         </ul>

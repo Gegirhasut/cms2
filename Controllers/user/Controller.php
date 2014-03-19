@@ -149,8 +149,8 @@ class Controller extends SmartyController
             $subjects_title = '';
             $subjects_title_po = '';
             foreach ($subjects as $subject) {
-                $subjects_title_po .= empty($subjects_title_po) ? $subject['subject_po'] : ',' . $subject['subject_po'];
-                $subjects_title .= empty($subjects_title) ? $subject['subject'] : ',' . $subject['subject'];
+                $subjects_title_po .= empty($subjects_title_po) ? $subject['subject_po'] : ', ' . $subject['subject_po'];
+                $subjects_title .= empty($subjects_title) ? $subject['subject'] : ', ' . $subject['subject'];
             }
             $this->smarty->assign('title', $user['fio'] . ' - учитель по ' . $subjects_title_po . ' в городе ' . $user['city'] . '.');
             $this->smarty->assign('description', $user['fio'] . ' - учитель по ' . $subjects_title_po . ' в городе ' . $user['city'] . '.');

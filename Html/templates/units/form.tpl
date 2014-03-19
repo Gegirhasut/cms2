@@ -1,3 +1,5 @@
+<script src="/Libs/bootstrap-3.1.0/js/bootstrap-maxlength.min.js"></script>
+
 <div class="row">
     <div class="col-md-12">
         <form class="form-horizontal" role="form" id="form" action="{$form.action}">
@@ -13,7 +15,12 @@
                             {if file_exists($file_name_full)}
                                 {include file=$file_name_tpl}
                             {else}
-                                <input type="{$field.type}" class="form-control" id="{$key}" name="{$key}" value="{$form.value[$key]}" placeholder="{$field.placeholder}">
+                                <input type="{$field.type}" class="form-control" id="{$key}" name="{$key}" value="{$form.value[$key]}" placeholder="{$field.placeholder}" {if isset($field.maxlength)}maxlength="{$field.maxlength}"{/if}>
+                                <script>
+                                    $('#{$key}').maxlength({ldelim}
+                                        alwaysShow: true
+                                    {rdelim});
+                                </script>
                             {/if}
 
                             {if isset ($field.help_block)}
@@ -30,7 +37,7 @@
 
         <div class="form-group">
             <div class="col-sm-offset-{$form.label_width}">
-                <button type="submit" class="btn btn-default" id="form_btn">{$form.action_name}</button>
+                <button type="submit" class="btn btn-info" id="form_btn">{$form.action_name}</button>
             </div>
         </div>
     </div>
