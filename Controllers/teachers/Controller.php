@@ -187,6 +187,16 @@ class Controller extends SmartyController
 
         $this->assignPages($db->count());
 
+        foreach ($result as &$user) {
+            if (!empty($user['info'])) {
+                $user['info'] = str_replace('<br>', '. ', $user['info']);
+                $user['info'] = strip_tags($user['info']);
+                if (mb_strlen($user['info']) > 110) {
+                    $user['info'] = mb_substr($user['info'], 0 ,110) . '...';
+                }
+            }
+        }
+
         return $result;
     }
 

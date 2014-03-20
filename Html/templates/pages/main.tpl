@@ -1,15 +1,29 @@
 <div class="row">
     <div class="col-md-3">
         <div style="text-align: center">
-            <h1>Все учителя</h1>
-            <h2>онлайн ассоциация</h2>
+            <div class="row">
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <h1>Все учителя</h1>
+                </div>
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <h2>онлайн ассоциация</h2>
+                </div>
+            </div>
         </div>
-        <ol class="list-unstyled menu-left">
-            <li><a href="/subjects/">Предметы</a></li>
-            <li><a href="/">БИЗНЕС ТРЕНИНГИ</a></li>
-            <li><a href="/">ЛИЧНОСТНЫЙ РОСТ</a></li>
-            <li><a href="/">ВЕБИНАРЫ</a></li>
-        </ol>
+        <div class="row menu">
+            <div class="col-md-12 col-sm-3">
+                <a href="/subjects">Предметы</a>
+            </div>
+            <div class="col-md-12 col-sm-3">
+                <a href="/">БИЗНЕС ТРЕНИНГИ</a>
+            </div>
+            <div class="col-md-12 col-sm-3">
+                <a href="/">ЛИЧНОСТНЫЙ РОСТ</a>
+            </div>
+            <div class="col-md-12 col-sm-3">
+                <a href="/">ВЕБИНАРЫ</a>
+            </div>
+        </div>
     </div>
     <div class="col-md-9">
         {include file="units/main/banner2.tpl"}

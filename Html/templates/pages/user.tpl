@@ -25,7 +25,7 @@
                     Фото
                 </div>
                 <div class="col-md-7">
-                    <img src="/{$small_path}{$user.user_pic}" />
+                    <img class="img-thumbnail" src="/{$small_path}{$user.user_pic}" />
                 </div>
             </div>
             <div class="row"><div class="col-md-12"></div></div>
@@ -58,6 +58,18 @@
             </div>
         </div>
         {if isset($user_auth)}
+            <div class="row">
+                <div class="col-md-5">
+                    Контактый телефон
+                </div>
+                <div class="col-md-7">
+                    {if $user.phone eq ''}
+                        не указан
+                    {else}
+                        {$user.phone}
+                    {/if}
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-5">
                     Skype

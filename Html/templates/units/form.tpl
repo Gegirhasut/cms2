@@ -7,7 +7,7 @@
                 {if !isset($field.nolist)}
                     <div class="form-group" id="key_{$key}">
                         <label for="{$key}" class="col-sm-{$form.label_width} control-label">{$field.title}</label>
-                        <div class="col-sm-{$form.field_width}">
+                        <div class="col-sm-{if isset($field.width)}{$field.width}{else}{$form.field_width}{/if}">
                             {assign var="file_name" value=$field.type}
                             {assign var="file_name_full" value=Html/templates/units/fields/$file_name.tpl}
                             {assign var="file_name_tpl" value=units/fields/$file_name.tpl}

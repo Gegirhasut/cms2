@@ -1,6 +1,6 @@
 {foreach from=$messages item=message}
     <tr {if $message.readed eq 0}class="active"{/if} id="m_id_{$message.m_id}">
-        <td width="50"><a href="/user/{$message.u_id_from}"><img width="45" src="/{$small_path}/{if empty($message.user_pic)}no-photo.png{else}{$message.user_pic}{/if}" /></a></td>
+        <td width="50"><a href="/user/{$message.u_id_from}"><img class="img-thumbnail" width="55" src="/{$small_path}/{if empty($message.user_pic)}no-photo.png{else}{$message.user_pic}{/if}" /></a></td>
         <td>
             {if $message.u_id_to neq $user_auth.u_id}
                 <b>Вы</b>

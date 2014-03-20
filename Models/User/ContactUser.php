@@ -18,12 +18,15 @@ class ContactUser extends Base
 
     public $fields = array (
         'u_id' => array ('type' => 'integer', 'nolist' => 1),
+        'phone' => array ('type' => 'text', 'title' => 'Телефоны', 'placeholder' => 'Контактные телефоны', 'maxlength' => 100),
         'skype' => array ('type' => 'text', 'title' => 'Skype', 'placeholder' => 'Ваш skype', 'maxlength' => 100),
         'info' => array (
             'type' => 'word',
             'title' => 'Дополнительная информация',
             'placeholder' => 'Введите дополнительную информацию о Вас',
+            'width' => 9
         ),
+        'subscribe' => array ('type' => 'checkbox', 'title' => 'Подписаться на рассылку'),
         //'use_contact_form' => array ('type' => 'checkbox', 'title' => 'Использовать форму связи'),
         'user_pic' => array ('type' => 'image', 'title' => 'Мини-фото', 'placeholder' => 'Рекомендуем загрузить мини-фото.<br>1. Нажмите кнопку "Выбрать файл".<br>2. Выберите файл с диска.<br>3. Нажмите кнопку "Загрузить картинку".<br>4. Выбирите область для создания миниатюры.'),
     );

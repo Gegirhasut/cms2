@@ -7,10 +7,6 @@
 <textarea {if isset($field.maxlength)}maxlength="{$field.maxlength}"{/if} id="{$key}" name="{$key}" placeholder="{$field.placeholder}" style="width:100%;" rows="10">{$form.value[$key]}</textarea>
 
 <script type="text/javascript">
-    $('#{$key}').maxlength({ldelim}
-        alwaysShow: true
-    {rdelim});
-
     $.fn.wysihtml5.locale["ru-RU"].emphasis = {ldelim} bold: "B", italic: "I", underline: "U" {rdelim};
     $('#{$key}').wysihtml5({ldelim}
         "font-styles": false,

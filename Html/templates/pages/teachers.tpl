@@ -22,9 +22,13 @@
             {foreach from=$teachers item=teacher}
                 <tr class="teacher">
                     <td width="50">
-                        <a href="/user/{$teacher.u_id}"><img width="45" src="/{$small_path}/{if empty($teacher.user_pic)}no-photo.png{else}{$teacher.user_pic}{/if}" /></a>
+                        <a href="/user/{$teacher.u_id}"><img class="img-thumbnail" width="50" src="/{$small_path}/{if empty($teacher.user_pic)}no-photo.png{else}{$teacher.user_pic}{/if}" /></a>
                     </td>
-                    <td><a href="/user/{$teacher.u_id}">{$teacher.fio}</a></td>
+                    <td>
+                        <a href="/user/{$teacher.u_id}">{$teacher.fio}</a>
+                        <br>
+                        <span class="short">{$teacher.info}</span>
+                    </td>
                     <td style="text-align: center;">{$teacher.cost} руб. / {$teacher.duration} мин.</td>
                     <td style="text-align: center;">{$teacher.city_name}</td>
                     <td style="text-align: center;">{if $teacher.skype neq ''}Нет{else}Есть{/if}</td>

@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `at_users` (
   password varchar(32) NOT NULL DEFAULT '',
   fio varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   zip varchar(20) DEFAULT NULL,
+  phone varchar(100) DEFAULT NULL,
   country int(11) NOT NULL DEFAULT 0,
   city int(11) NOT NULL DEFAULT 0,
   region int(11) NOT NULL DEFAULT 0,
@@ -12,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `at_users` (
   user_pic varchar(100) DEFAULT NULL,
   skype varchar(100) DEFAULT NULL,
   use_contact_form bool DEFAULT false,
+  subscribe bool DEFAULT false,
   info varchar(5000) NOT NULL DEFAULT '',
   messages int(11) DEFAULT 0,
   PRIMARY KEY (u_id)

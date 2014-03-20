@@ -5,6 +5,12 @@ $( document ).ready(function() {
     var count = $('.tutor').length;
     $('.kv').width(width * count);
     setTimeout("runnerBlock()", blockTimeout);
+
+    $('form').keypress(function (e) {
+        if(e.which == 13) {
+            submitForm();
+        }
+    });
 });
 
 var direction = '-';

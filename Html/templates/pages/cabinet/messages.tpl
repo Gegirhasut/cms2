@@ -8,7 +8,7 @@
         <table class="table">
             {foreach from=$messages item=message}
                 <tr class="message {if $message.readed eq 0}active{/if}" id="message_{$message.another_u}">
-                    <td width="50"><img width="45" src="/{$small_path}{if empty($message.user_pic)}no-photo.png{else}{$message.user_pic}{/if}" /></td>
+                    <td width="50"><img class="img-thumbnail" width="55" src="/{$small_path}{if empty($message.user_pic)}/no-photo.png{else}{$message.user_pic}{/if}" /></td>
                     <td width="160" style="text-align: left;">{$message.fio}<br>{$message.posted_time}</td>
                     <td style="text-align: left;">{$message.subject}</td>
                     <td width="25" style="vertical-align: middle;">

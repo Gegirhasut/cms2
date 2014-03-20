@@ -12,13 +12,17 @@
     <table class="table">
         <form class="form-horizontal" role="form" id="form" action="/cabinet/messages/{$user_from.u_id}">
             <tr style="margin-top: 10px;">
-                <td width="50"><img width="45" src="/{$small_path}/{if empty($user_auth.user_pic)}no-photo.png{else}{$user_auth.user_pic}{/if}" /></td>
+                <td width="50"><img class="img-thumbnail" width="55" src="/{$small_path}/{if empty($user_auth.user_pic)}no-photo.png{else}{$user_auth.user_pic}{/if}" /></td>
                 <td><textarea maxlength="5000" class="form-control" id="message" name="message" placeholder="Введите сообщение" rows="5"></textarea></td>
-                <td width="50"><img width="45" src="/{$small_path}/{if empty($user_from.user_pic)}no-photo.png{else}{$user_from.user_pic}{/if}" /></td>
+                <td width="50"><img class="img-thumbnail" width="55" src="/{$small_path}/{if empty($user_from.user_pic)}no-photo.png{else}{$user_from.user_pic}{/if}" /></td>
             </tr>
         </form>
         <tr><td class="no"></td><td class="no"><button type="submit" class="btn btn-info" id="form_btn">Отправить</button></td></tr>
     </table>
+</div>
+
+<div style="padding: 0px 0px 0px 42px;">
+    {include file="units/notify_message.tpl"}
 </div>
 
 <script>

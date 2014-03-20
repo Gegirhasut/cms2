@@ -32,7 +32,8 @@ class Controller extends BaseController
 
         $u_id_from = $_SESSION['user_auth']['u_id'];
         if ($u_id_from == $u_id_to) {
-            echo arrayToJson(array('success' => 'Вы не можете отправлять сообщение самому себе!'));
+            $_SESSION['cabinet_message'][] = 'Вы не можете отправлять сообщение самому себе!';
+            echo arrayToJson(array('success' => '/cabinet/messages/' . $u_id_to));
             exit;
         }
 

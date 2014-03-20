@@ -1,14 +1,19 @@
 $(document).ready(function() {
     $('#form_btn').bind("click touchstart", function(){
-        $('#cabinet_message').hide();
+        submitForm();
+    });
+});
 
-        var postData = $('#form').serializeArray();
-        var formURL = $('#form').attr("action");
+function submitForm () {
+    $('#cabinet_message').hide();
 
-        showOverlay('Подождите немного ...');
-        var start_time = (new Date()).getTime();
+    var postData = $('#form').serializeArray();
+    var formURL = $('#form').attr("action");
 
-        $.ajax(
+    showOverlay('Подождите немного ...');
+    var start_time = (new Date()).getTime();
+
+    $.ajax(
         {
             url : formURL,
             type: "POST",
@@ -29,8 +34,7 @@ $(document).ready(function() {
                 //if fails
             }
         });
-    });
-});
+}
 
 var formResponse = '';
 

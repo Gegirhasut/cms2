@@ -94,7 +94,7 @@ class Controller extends SmartyController
         $country = new Country();
 
         $users = $this->db
-            ->select("{$city->table}.title as city, {$region->table}.title as region, {$country->table}.title as country, {$user->table}.fio, {$user->table}.user_pic, {$user->table}.info, {$user->table}.skype, {$user->table}.email, {$user->table}.u_id")
+            ->select("{$city->table}.title as city, {$region->table}.title as region, {$country->table}.title as country, {$user->table}.fio, {$user->table}.user_pic, {$user->table}.info, {$user->table}.skype, {$user->table}.phone, {$user->table}.email, {$user->table}.u_id")
             ->from($user->table)
             ->join($city->table, "ON {$city->table}.city_id = {$user->table}.city")
             ->join($region->table, "ON {$region->table}.region_id = {$user->table}.region")
