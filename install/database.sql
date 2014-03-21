@@ -16,7 +16,19 @@ CREATE TABLE IF NOT EXISTS `at_users` (
   subscribe bool DEFAULT false,
   info varchar(5000) NOT NULL DEFAULT '',
   messages int(11) DEFAULT 0,
+  i_am_teacher bool DEFAULT false,
+  last_login timestamp default CURRENT_TIMESTAMP,
+  s_id int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (u_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `at_reg_sources` (
+  rs_id int(11) NOT NULL AUTO_INCREMENT,
+  source varchar(1000) NOT NULL DEFAULT '',
+  source_md5 varchar(32) NOT NULL DEFAULT '',
+  cnt int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (rs_id),
+  UNIQUE (source_md5)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 create table at_activations
@@ -70,6 +82,7 @@ create table at_subjects
  subject_po varchar(100) NOT NULL DEFAULT '',
  url varchar(50) NOT NULL DEFAULT '',
  r_id int(11) NOT NULL,
+ cnt int(11) NOT NULL,
  PRIMARY KEY (s_id),
  INDEX (url)
 )

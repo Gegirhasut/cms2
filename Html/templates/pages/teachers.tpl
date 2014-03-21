@@ -39,7 +39,15 @@
         {include file="units/teachers/pager.tpl"}
 
         {else}
-            <div style="text-align: center;"><b>По Вашему запросу ничего не найдено</b></div>
+            <div style="text-align: center;">
+                {if isset($city)}
+                    К сожалению, мы не нашли учителей {if isset($subject)}по <b>{$subject.subject_po}</b> {/if}в городе <b>{$city.city}</b>.
+                    <br><br>
+                    Сделать поиск по <b><a href="/teachers{if isset($subject)}/{$subject.subject}{/if}" title="Все учителя">всем учителям{if isset($subject)} по {$subject.subject_po}{/if}</a></b>?
+                {else}
+                    <b>К сожалению, мы не нашли учителей по Вашему запросу.</b>
+                {/if}
+            </div>
         {/if}
     </div>
 </div>

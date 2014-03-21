@@ -31,14 +31,16 @@ class Controller extends SmartyController
                 ->fetch();
 
             if (empty($subjects)) {
-                echo arrayToJson(array('success' => '/teachers'));
-                exit;
+                if (!isset($_POST['city'])) {
+                    echo arrayToJson(array('success' => '/teachers'));
+                    exit;
+                }
+            } else {
+                $url .= '/' . $subjects[0]['url'];
             }
-
-            $url .= '/' . $subjects[0]['url'];
         }
 
-        if (isset($_POST['city'])) {
+        if (isset($_POST['city']) && $_POST['city'] != 0) {
             $url .= '/' . (int) $_POST['city'];
         }
 

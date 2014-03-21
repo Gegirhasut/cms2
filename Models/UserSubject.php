@@ -7,6 +7,16 @@ class UserSubject extends Base
     public $identity = 'us_id';
     public $api_operations = array ('delete' => array ('check_auth' => 'u_id'));
 
+    public $hooks = array (
+        'insert' => array (
+            'after' => 'InsertSubject'
+        ),
+        'delete' => array (
+            'before' => 'RemoveSubject'
+        )
+    );
+
+
     public $fields = array (
         'us_id' => array ('type' => 'integer', 'nolist' => 1),
         'u_id' => array ('type' => 'select',

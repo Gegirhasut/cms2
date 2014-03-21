@@ -20,6 +20,7 @@ class Subject extends Base
         ),
         'subject' => array ('type' => 'text', 'title' => 'Предмет обучения'),
         'subject_po' => array ('type' => 'text', 'title' => 'Обучает по ...'),
+        'cnt' => array ('type' => 'text', 'title' => 'Количество учителей'),
         'url' => array ('type' => 'text', 'title' => 'Ссылка'),
     );
 }

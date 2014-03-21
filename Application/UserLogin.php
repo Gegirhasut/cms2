@@ -1,50 +1,54 @@
 <?php
 
 class UserLogin {
-    public static function loginById ($id, $register = false) {
+    public static function loginById ($id, $register_in_session = false) {
         require_once ('Database/DBFactory.php');
         $db = DBFactory::getInstance('mysql', $GLOBALS['mysql']);
 
         Application::requireClass('User');
         $user = new User();
 
-        $user = $db->select('*')->from($user->table)->where($user->identity . " = $id")->fetch();
+        $users = $db->select('*')->from($user->table)->where($user->identity . " = $id")->fetch();
 
-        if (!empty($user)) {
-            if ($register) {
+        if (!empty($users)) {
+            if ($register_in_session) {
                 if(!isset($_SESSION))
                 {
                     session_start();
                 }
-                $_SESSION['user_auth'] = $user[0];
+                $_SESSION['user_auth'] = $users[0];
             }
-            return $user[0];
+            $db->sql("UPDATE {$user->table} SET last_login = CURRENT_TIMESTAMP WHERE u_id = $id");
+
+            return $users[0];
         } else {
             return null;
         }
     }
 
-    public static function loginByLogin ($email, $password, $register = false) {
+    public static function loginByLogin ($email, $password, $register_in_session = false) {
         require_once ('Database/DBFactory.php');
         $db = DBFactory::getInstance('mysql', $GLOBALS['mysql']);
 
         Application::requireClass('User');
         $user = new User();
 
-        $user = $db->select('*')
+        $users = $db->select('*')
             ->from($user->table)
             ->where("email = '$email' AND password = '$password'")
             ->fetch();
 
-        if (!empty($user)) {
-            if ($register) {
+        if (!empty($users)) {
+            if ($register_in_session) {
                 if(!isset($_SESSION))
                 {
                     session_start();
                 }
-                $_SESSION['user_auth'] = $user[0];
+                $_SESSION['user_auth'] = $users[0];
             }
-            return $user[0];
+            $db->sql("UPDATE {$user->table} SET last_login = CURRENT_TIMESTAMP WHERE u_id = {$users[0]['u_id']}");
+
+            return $users[0];
         } else {
             return null;
         }

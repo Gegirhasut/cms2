@@ -6,8 +6,9 @@ $(document).ready(function() {
     $("#country").select2({
         minimumInputLength: 1,
         ajax: {
-            url: '/api/getCountry/',
+            url: '/api/getCountry/?empty=' + $("#country").attr('data-empty'),
             dataType: 'json',
+            quietMillis: 300,
             data: function (term) {
                 return {
                     title: term
@@ -36,10 +37,11 @@ $(document).ready(function() {
     });
 
     $("#region").select2({
-        minimumInputLength: 1,
+        minimumInputLength: 0,
         ajax: {
-            url: '/api/getRegion/',
+            url: '/api/getRegion/?empty=' + $("#region").attr('data-empty'),
             dataType: 'json',
+            quietMillis: 300,
             data: function (term) {
                 return {
                     country_id: $('#country').val(),
@@ -71,8 +73,9 @@ $(document).ready(function() {
     $("#city").select2({
         minimumInputLength: 0,
         ajax: {
-            url: '/api/getCity/',
+            url: '/api/getCity/?empty=' + $("#city").attr('data-empty'),
             dataType: 'json',
+            quietMillis: 300,
             data: function (term) {
                 return {
                     country_id: $('#country').val(),

@@ -40,7 +40,7 @@ class PersonalUser extends Base
                 'on' => 'country_id',
                 'show' => 'title'
             ),
-            'placeholder' => 'Выберите Вашу страну'
+            'placeholder' => 'Выберите Вашу страну',
         ),
         'region' => array (
             'type' => 'select',
@@ -66,5 +66,6 @@ class PersonalUser extends Base
             ),
             'placeholder' => 'Выберите Ваш город'
         ),
+        'i_am_teacher' => array ('type' => 'checkbox', 'title' => 'Учитель'),
     );
 }

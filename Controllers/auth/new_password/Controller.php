@@ -45,7 +45,7 @@ class Controller extends SmartyController
 
             $_SESSION['cabinet_message'] = 'Пароль был изменен';
 
-            $this->db->delete()->from($remindPassword->table)->where("rp_id = {$reminder[0]['rp_id']}")->execute();
+            $this->db->delete($remindPassword)->where("rp_id = {$reminder[0]['rp_id']}")->execute();
 
             echo arrayToJson(array('success' => '/auth/login'));
             exit;

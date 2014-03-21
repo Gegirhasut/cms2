@@ -16,7 +16,7 @@
 
 {if $values[$key] neq ''}
     <script>
-        addPreviewValue('{$object->images.small_path}/{$values[$key]}', '{$key}', '{$values[$key]}');
+        addPreviewValue('{$object->images.small_path}{$values[$key]}', '{$key}', '{$values[$key]}');
     </script>
 {/if}
 

@@ -10,6 +10,32 @@ class MySQL implements IDatabase
 
     protected $union = false;
 
+    protected $sql = '';
+
+    protected $hook_after = null;
+
+    protected $last_id = null;
+
+    protected function executeHook(&$hook, $object) {
+        require_once("Models/Hooks/$hook.php");
+        call_user_func(array($hook, 'exec'), $this, $object);
+        $hook = null;
+    }
+
+    protected function checkHooks($object, $operation) {
+
+        if (isset($object->hooks)) {
+            if (isset($object->hooks[$operation])) {
+                if (isset($object->hooks[$operation]['after'])) {
+                    $this->hook_after = array ('operation' => $operation, 'hook' => $object->hooks[$operation]['after'], 'object' => $object);
+                }
+                if (isset($object->hooks[$operation]['before'])) {
+                    $this->executeHook($object->hooks[$operation]['before'], $object);
+                }
+            }
+        }
+    }
+
     public function connect ($params) {
         if (!is_null($this->mysqli)) {
             return $this->mysqli;
@@ -29,6 +55,15 @@ class MySQL implements IDatabase
 
     public function execute () {
         $result = $this->mysqli->query($this->sql);
+
+        $this->last_id = $this->mysqli->insert_id;
+
+        if (!is_null($this->hook_after)) {
+            if ($this->hook_after['operation'] == 'insert' && $this->last_id == 0) {
+            } else {
+                $this->executeHook($this->hook_after['hook'], $this->hook_after['object']);
+            }
+        }
 
         if (!$result) {
             throw new Exception('Error executing SQL query : ' . $this->sql . '. Error: ' . $this->mysqli->error);
@@ -74,10 +109,11 @@ class MySQL implements IDatabase
         return $rows;
     }
 
-    protected $sql = '';
+    public function delete ($object) {
+        $this->checkHooks($object, 'delete');
 
-    public function delete () {
-        $this->sql = "DELETE ";
+        $this->sql = "DELETE FROM {$object->table}";
+
         return $this;
     }
 
@@ -131,6 +167,8 @@ class MySQL implements IDatabase
     }
 
     public function insert ($object, $ignore = false) {
+        $this->checkHooks($object, 'insert');
+
         if ($ignore) {
             $this->sql = 'INSERT IGNORE INTO ' . $object->table;
         } else {
@@ -158,7 +196,7 @@ class MySQL implements IDatabase
         return $this;
     }
 
-    public function onduplicate($object) {
+    public function onduplicate($object, $increment = array()) {
         $this->sql .= " ON DUPLICATE KEY UPDATE ";
 
         $duplicate = '';
@@ -168,7 +206,11 @@ class MySQL implements IDatabase
                 if (!empty($duplicate)) {
                     $duplicate .= ',';
                 }
-                $duplicate .= "$key = " . $object->fields[$key]['value'];
+                if (isset($increment[$key])) {
+                    $duplicate .= "$key = $key + 1";
+                } else {
+                    $duplicate .= "$key = '" . $object->fields[$key]['value'] . "'";
+                }
             }
         }
 
@@ -178,6 +220,8 @@ class MySQL implements IDatabase
     }
 
     public function update ($object) {
+        $this->checkHooks($object, 'update');
+
         $update = '';
 
         foreach ($object->fields as $key => $field) {
@@ -210,6 +254,6 @@ class MySQL implements IDatabase
     }
 
     public function lastId() {
-        return $this->mysqli->insert_id;
+        return $this->last_id;
     }
 }

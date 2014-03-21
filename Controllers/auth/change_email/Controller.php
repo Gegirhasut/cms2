@@ -20,7 +20,7 @@ class Controller
             require_once('Application/UserLogin.php');
             UserLogin::loginById($new_email[0]['u_id'], true);
 
-            $db->delete()->from($changeEmail->table)->where($changeEmail->identity . ' = ' . $new_email[0]['ce_id'])->execute();
+            $db->delete($changeEmail)->where($changeEmail->identity . ' = ' . $new_email[0]['ce_id'])->execute();
 
             $_SESSION['cabinet_message'] = array("Ваш основной email изменен!");
         }

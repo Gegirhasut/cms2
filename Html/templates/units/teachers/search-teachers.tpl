@@ -10,11 +10,11 @@
     </div>
 
     <div class="form-group" id="key_r_id">
-        <input type="hidden" name="r_id" id="r_id" style="width:100%" value="{$subject.r_id}" placeholder="Выберите рубрику">
+        <input type="hidden" name="r_id" data-empty="1" id="r_id" style="width:100%" value="{$subject.r_id}" placeholder="Выберите рубрику">
     </div>
 
     <div class="form-group" id="key_s_id">
-        <input type="hidden" name="s_id" id="s_id" style="width:100%" value="{$subject.s_id}" placeholder="Выберите предмет">
+        <input type="hidden" name="s_id" data-empty="1" id="s_id" style="width:100%" value="{$subject.s_id}" placeholder="Выберите предмет">
     </div>
 
     <div class="form-group">
@@ -22,15 +22,15 @@
     </div>
 
     <div class="form-group" id="key_country">
-        <input type="hidden" name="country" id="country" style="width:100%" value="{$city.country_id}" placeholder="Выберите страну">
+        <input type="hidden" name="country" data-empty="1" id="country" style="width:100%" value="{$city.country_id}" placeholder="Выберите страну">
     </div>
 
     <div class="form-group" id="key_region">
-        <input type="hidden" name="region" id="region" style="width:100%" value="{$city.region_id}" placeholder="Выберите регион">
+        <input type="hidden" name="region" data-empty="1" id="region" style="width:100%" value="{$city.region_id}" placeholder="Выберите регион">
     </div>
 
     <div class="form-group" id="key_city">
-        <input type="hidden" name="city" id="city" style="width:100%" value="{$city.city_id}" placeholder="Выберите город">
+        <input type="hidden" name="city" data-empty="1" id="city" style="width:100%" value="{$city.city_id}" placeholder="Выберите город">
     </div>
 
     <div class="form-group">

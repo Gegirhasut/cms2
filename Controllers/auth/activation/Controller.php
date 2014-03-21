@@ -22,7 +22,7 @@ class Controller
             $user = UserLogin::loginById($activations[0]['u_id'], true);
 
             if (!is_null($user)) {
-                $db->delete()->from($activation->table)->where("code = '$code'")->execute();
+                $db->delete($activation)->where("code = '$code'")->execute();
                 header('location: /cabinet');
             } else {
                 header('location: /');

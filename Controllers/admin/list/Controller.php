@@ -18,6 +18,7 @@ class Controller extends BaseAdminController
     protected function makeSorting ($class) {
         if (isset($_GET['order'])) {
             $direction = isset($_GET['direction']) ? $_GET['direction'] : 'ASC';
+            $direction = isset($_GET['by']) ? $_GET['by'] : 'ASC';
 
             $_SESSION[$class]['order'] = array(
                 'by' => $_GET['order'],

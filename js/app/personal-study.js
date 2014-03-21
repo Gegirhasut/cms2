@@ -5,8 +5,9 @@ $(document).ready(function() {
     $("#r_id").select2({
         minimumInputLength: 0,
         ajax: {
-            url: '/api/getRubric/',
+            url: '/api/getRubric/?empty=' + $("#r_id").attr('data-empty'),
             dataType: 'json',
+            quietMillis: 300,
             data: function (term) {
                 return {
                     title: term
@@ -35,8 +36,9 @@ $(document).ready(function() {
     $("#s_id").select2({
         minimumInputLength: 0,
         ajax: {
-            url: '/api/getSubject/',
+            url: '/api/getSubject/?empty=' + $("#s_id").attr('data-empty'),
             dataType: 'json',
+            quietMillis: 300,
             data: function (term) {
                 return {
                     r_id: $('#r_id').val(),

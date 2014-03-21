@@ -26,8 +26,6 @@ class Controller extends BaseController
 
         $lastId = $this->db->lastId();
 
-        //echo $lastId;
-
         if ($lastId == 0) {
             $userSubject->error = array();
             $userSubject->error[] = array('name' => 's_id', 'message' => 'Предмет уже существует в Вашем списке');

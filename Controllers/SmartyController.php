@@ -8,6 +8,15 @@ class SmartyController
         if(!isset($_SESSION))
         {
             session_start();
+//            unset($_SESSION['source']);
+            //print_r($_SESSION['source']);
+            if (!isset($_SESSION['source'])) {
+                if (isset($_SERVER['HTTP_REFERER'])) {
+                    $_SESSION['source'] = $_SERVER['HTTP_REFERER'];
+                } else {
+                    $_SESSION['source'] = 'direct';
+                }
+            }
         }
 
         if ($this->user_auth && !isset($_SESSION['user_auth'])) {

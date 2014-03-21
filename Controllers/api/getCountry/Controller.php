@@ -45,6 +45,10 @@ class Controller
 
         $records = $db->orderBy('title')->fetch();
 
+        if (isset($_GET['empty']) && $_GET['empty'] == 1 ) {
+            array_unshift($records, array('id' => 0, 'text' => 'Не выбрано'));
+        }
+
         require_once('Helpers/json.php');
         echo arrayToJson($records);
         exit;

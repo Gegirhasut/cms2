@@ -72,5 +72,7 @@ class RegistrationUser extends Base
             ),
             'placeholder' => 'Выберите Ваш город'
         ),
+        'i_am_teacher' => array ('type' => 'checkbox', 'title' => 'Я учитель'),
+        's_id' => array ('type' => 'text', 'title' => 'Номер источника', 'nolist' => 1),
     );
 }

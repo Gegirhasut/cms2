@@ -6,6 +6,13 @@ class ContactUser extends Base
     public $table = 'at_users';
     public $identity = 'u_id';
 
+    public $hooks = array (
+        'update' => array (
+            'before' => 'UpdateUser_SaveImage',
+            'after' => 'UpdateUser_RemoveImage'
+        )
+    );
+
     public $images = array(
         'small_path' => 'images/userpics/small',
         'upload' => 'images/userpics/big',

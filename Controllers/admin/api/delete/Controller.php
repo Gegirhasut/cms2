@@ -22,8 +22,7 @@ class Controller extends BaseApiController
          */
         $db = DBFactory::getInstance('mysql', $GLOBALS['mysql']);
 
-        $db->delete()
-            ->from($object->table)
+        $db->delete($object)
             ->where($object->identity . ' = ' . $identity)
             ->execute();
 

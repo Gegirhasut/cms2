@@ -42,8 +42,9 @@ class Controller
 
         $where .= ' AND u_id = ' . $_SESSION['user_auth']['u_id'];
 
-        $db->delete()
-            ->from($object->table)
+        $object->{$object->identity} = $identity;
+
+        $db->delete($object)
             ->where($where)
             ->execute();
 

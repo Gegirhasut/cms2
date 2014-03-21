@@ -8,7 +8,7 @@ interface IDatabase {
     /**
      * @return IDatabase
      */
-    public function delete ();
+    public function delete ($object);
     /**
      * @return IDatabase
      */

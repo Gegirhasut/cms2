@@ -24,10 +24,11 @@ class BaseAdminController
             $admin_menu = array (
                 'Пользователи' => array ('dropdown' =>
                     array(
-                        'Пользователи' => array ('url' => '/admin/list/User/?order=u_id'),
+                        'Пользователи' => array ('url' => '/admin/list/User/?order=u_id&by=desc'),
                         'Активации' => array ('url' => '/admin/list/Activation/?order=a_id'),
                         'Смена емайла' => array ('url' => '/admin/list/ChangeEmail/?order=ce_id'),
-                        'Восстановление пароля' => array ('url' => '/admin/list/RemindPassword/?order=rp_id')
+                        'Восстановление пароля' => array ('url' => '/admin/list/RemindPassword/?order=rp_id'),
+                        'Источники' => array ('url' => '/admin/list/RegSource/?order=rs_id&by=desc')
                     )
                 ),
                 'География' => array ('dropdown' =>

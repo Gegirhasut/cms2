@@ -4,9 +4,9 @@ require_once ('Database/DBFactory.php');
 class Controller
 {
     function post () {
-        if (empty($_GET['title'])) {
+        /*if (empty($_GET['title'])) {
             exit;
-        }
+        }*/
 
         $class = 'Region';
 
@@ -31,7 +31,6 @@ class Controller
         $where = 'country_id = ' . (int) $_GET['country_id'];
 
         if (!empty($_GET['title'])) {
-            $operator = '=';
             $value = $_GET['title'];
 
             $where .= " AND title LIKE '" . $db->escape($value) . "%'";
@@ -45,6 +44,10 @@ class Controller
         }
 
         $records = $db->orderBy('title')->fetch();
+
+        if (isset($_GET['empty']) && $_GET['empty'] == 1 ) {
+            array_unshift($records, array('id' => 0, 'text' => 'Не выбрано'));
+        }
 
         require_once('Helpers/json.php');
         echo arrayToJson($records);

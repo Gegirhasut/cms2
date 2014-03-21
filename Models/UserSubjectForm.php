@@ -6,6 +6,15 @@ class UserSubjectForm extends Base
     public $table = 'at_user_subjects';
     public $identity = 'us_id';
 
+    public $hooks = array (
+        'insert' => array (
+            'after' => 'InsertSubject'
+        ),
+        'delete' => array (
+            'before' => 'RemoveSubject'
+        )
+    );
+
     public $fields = array (
         'us_id' => array ('type' => 'integer', 'nolist' => 1),
         'r_id' => array (

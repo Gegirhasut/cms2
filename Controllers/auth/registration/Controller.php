@@ -27,6 +27,14 @@ class Controller extends SmartyController
             exit;
         }
 
+        Application::requireClass('RegSource');
+        $regSource = new RegSource();
+        $regSource->source = substr($_SESSION['source'], 0, 1000);
+        $regSource->source_md5 = md5($_SESSION['source']);
+        $db->insert($regSource)->onduplicate($regSource, array('cnt' => 1))->execute();
+        $source_id = $db->lastId();
+        $user->source_id = $source_id;
+
         $db->insert($user)->execute();
         $u_id = $db->lastId();
         require_once('Application/UserLogin.php');

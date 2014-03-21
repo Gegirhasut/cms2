@@ -7,6 +7,13 @@ class User extends Base
     public $identity = 'u_id';
     public $api_fields = array('u_id' => 1, 'email' => 1);
 
+    public $hooks = array (
+        'update' => array (
+            'before' => 'UpdateUser_SaveImage',
+            'after' => 'UpdateUser_RemoveImage'
+        )
+    );
+
     public $images = array(
         'small_path' => 'images/userpics/small',
         'upload' => 'images/userpics/big',
@@ -68,5 +75,7 @@ class User extends Base
         'use_contact_form' => array ('type' => 'checkbox', 'title' => 'Использовать форму связи'),
         'info' => array ('type' => 'word', 'title' => 'Обо мне'),
         'messages' => array ('type' => 'int', 'title' => 'Количество непрочитанных сообщений'),
+        'last_login' => array ('type' => 'text', 'title' => 'Последний вход'),
+        'source_id' => array ('type' => 'text', 'title' => 'Номер источника'),
     );
 }
