@@ -111,6 +111,8 @@ class MySQL implements IDatabase
 
         $result->close();
 
+        $this->union = false;
+
         return $rows;
     }
 

@@ -26,9 +26,9 @@ class PersonalUser extends Base
         'password' => array (
             'type' => 'password',
             'title' => 'Пароль',
-            'check' => array ('not_empty'),
+            'check' => array ('not_empty', 'strict'),
             'help_block' => 'Оставьте это поле пустым, если не собираетесь менять пароль',
-            'placeholder' => 'Введите новый пароль'
+            'placeholder' => 'Введите новый пароль',
         ),
         'country' => array (
             'type' => 'select',

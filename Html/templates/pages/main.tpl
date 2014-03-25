@@ -37,55 +37,7 @@
 <div class="block">
     <div class="viewport">
         <div class="kv">
-            <div class="tutor">
-                David Kessel
-                <br/>
-                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
-                <br/>
-                английский язык
-            </div>
-            <div class="tutor">
-                David Kessel
-                <br/>
-                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
-                <br/>
-                английский язык
-            </div>
-            <div class="tutor">
-                David Kessel
-                <br/>
-                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
-                <br/>
-                английский язык
-            </div>
-            <div class="tutor">
-                David Kessel
-                <br/>
-                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
-                <br/>
-                английский язык
-            </div>
-            <div class="tutor">
-                David Kessel
-                <br/>
-                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
-                <br/>
-                английский язык
-            </div>
-            <div class="tutor">
-                David Kessel
-                <br/>
-                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
-                <br/>
-                английский язык
-            </div>
-            <div class="tutor">
-                David Kessel
-                <br/>
-                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
-                <br/>
-                английский язык
-            </div>
+            {include file="units/main/tutors.tpl"}
         </div>
     </div>
 </div>
@@ -98,10 +50,12 @@
     <div class="row search">
         {foreach from=$rubrics item=rubric}
             <div class="col-md-3">
-                <span class="title">{$rubric.title}</span>
+                <span class="title">
+                    <a href="/subjects/{$rubric.r_id}" title="{$rubric.title}">{$rubric.title}</a>
+                </span>
                 <ul>
                     {foreach from=$rubric.subjects item=subject}
-                        <li><a href="/teachers/{$subject.url}/" title="{$subject.subject}">{$subject.subject}</a></li>
+                        <li><a href="/teachers/{$subject.url}" title="{$subject.subject}">{$subject.subject}</a></li>
                     {/foreach}
                 </ul>
             </div>

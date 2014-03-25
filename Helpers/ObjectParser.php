@@ -16,6 +16,8 @@ class ObjectParser
                 return 'Пользователь с таким email уже существует!';
             case 'email_not_found':
                 return 'Пользователь с указанным email не существует!';
+            case 'strict':
+                return 'Пароль должен быть длиной не менее 6 символов!';
         }
 
         return 'Ошибка';
@@ -83,6 +85,12 @@ class ObjectParser
                         case 'password2':
                             if (isset($field['value'])) {
                                 $error = $object->fields[$field['password_field']]['value'] != $field['value'];
+                            }
+                            break;
+                        case 'strict':
+
+                            if (isset($field['value'])) {
+                                $error = strlen($_POST[$key]) < 6;
                             }
                             break;
                     }

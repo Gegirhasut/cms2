@@ -25,8 +25,8 @@ class RegistrationUser extends Base
         'password' => array (
             'type' => 'password',
             'title' => 'Пароль',
-            'check' => array ('not_empty'),
-            'placeholder' => 'Введите пароль'
+            'check' => array ('not_empty', 'strict'),
+            'placeholder' => 'Введите пароль',
         ),
         'password2' => array (
             'nondb' => 1,

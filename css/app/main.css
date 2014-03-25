@@ -47,7 +47,7 @@ html { height: 100%; }
     /*float: left;*/
 }
 
-.search .col-md-3, .search .col-md-12, .search .col-md-4 {
+.search .col-md-3, .search .col-md-12, .search .col-md-4, .title a {
     color: #D62E2F;
     text-align: center;
 }

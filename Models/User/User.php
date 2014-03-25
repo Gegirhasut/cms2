@@ -18,8 +18,8 @@ class User extends Base
         'small_path' => 'images/userpics/small',
         'upload' => 'images/userpics/big',
         'levels' => 2,
-        'w' => 100,
-        'h' => 100,
+        'w' => 150,
+        'h' => 150,
         'maxw' => 800,
         'maxh' => 800
     );

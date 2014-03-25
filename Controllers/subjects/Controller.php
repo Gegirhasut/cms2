@@ -21,18 +21,49 @@ class Controller extends SmartyController
         $subject = new Subject();
         $rubric = new Rubric();
 
-        $rubrics = $this->db->select('title, r_id')
-            ->from($rubric->table)
-            ->orderBy('sort')
-            ->fetch('r_id');
+        if (count(Router::$path) > 0) {
+            $rubrics = $this->db->select('title, r_id')
+                ->from($rubric->table)
+                ->where('r_id = ' . (int) Router::$path[0])
+                ->orderBy('sort')
+                ->fetch('r_id');
+
+            if (!empty($rubrics)) {
+                foreach ($rubrics as $r) {
+                    $this->smarty->assign('title', 'Все Учителя - Предметы для обучения. ' . $r['title']);
+                    $this->smarty->assign('description', 'Все Учителя - Поиск репетиторов. Предметы для обучения. ' . $r['title']);
+                    $this->smarty->assign('keywords', $r['title'] . ', учителя, репетиторы');
+                    $this->smarty->assign('h1', "Предметы для обучения. {$r['title']}.");
+                }
+            }
+        } else {
+            $rubrics = $this->db->select('title, r_id')
+                ->from($rubric->table)
+                ->orderBy('sort')
+                ->fetch('r_id');
+
+            $this->smarty->assign('title', 'Все Учителя - Предметы для обучения');
+            $this->smarty->assign('description', 'Все Учителя - Поиск репетиторов. Предметы для обучения.');
+            $this->smarty->assign('keywords', 'учителя, репетиторы, все рубрики');
+            $this->smarty->assign('h1', 'Предметы для обучения');
+        }
+
+
 
         foreach ($rubrics as &$rubric) {
             $rubric['subjects'] = array();
         }
 
-        $subjects = $this->db->select('subject, url, r_id, subject_po')
-            ->from($subject->table)
-            ->fetch();
+        if (count(Router::$path) > 0) {
+            $subjects = $this->db->select('subject, url, r_id, subject_po')
+                ->from($subject->table)
+                ->where('r_id = ' . (int) Router::$path[0])
+                ->fetch();
+        } else {
+            $subjects = $this->db->select('subject, url, r_id, subject_po')
+                ->from($subject->table)
+                ->fetch();
+        }
 
         foreach ($subjects as $subject) {
             $rubrics[$subject['r_id']]['subjects'][] = $subject;
