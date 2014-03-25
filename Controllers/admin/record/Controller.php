@@ -29,7 +29,7 @@ class Controller extends BaseAdminController
 
     function post() {
         $this->detectObject();
-        require_once('helpers/ObjectParser.php');
+        require_once('Helpers/ObjectParser.php');
         ObjectParser::parse($_POST, $this->object);
 
         /**

@@ -38,53 +38,53 @@
     <div class="viewport">
         <div class="kv">
             <div class="tutor">
-                Максим
+                David Kessel
                 <br/>
-                <img src="/images/userpics/1-maksim.jpg" />
+                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
                 <br/>
-                Программирование
+                английский язык
             </div>
             <div class="tutor">
-                Максим
+                David Kessel
                 <br/>
-                <img src="/images/userpics/1-maksim.jpg" />
+                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
                 <br/>
-                Программирование
+                английский язык
             </div>
             <div class="tutor">
-                Максим
+                David Kessel
                 <br/>
-                <img src="/images/userpics/1-maksim.jpg" />
+                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
                 <br/>
-                Программирование
+                английский язык
             </div>
             <div class="tutor">
-                Максим
+                David Kessel
                 <br/>
-                <img src="/images/userpics/1-maksim.jpg" />
+                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
                 <br/>
-                Программирование
+                английский язык
             </div>
             <div class="tutor">
-                Максим
+                David Kessel
                 <br/>
-                <img src="/images/userpics/1-maksim.jpg" />
+                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
                 <br/>
-                Программирование
+                английский язык
             </div>
             <div class="tutor">
-                Максим
+                David Kessel
                 <br/>
-                <img src="/images/userpics/1-maksim.jpg" />
+                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
                 <br/>
-                Программирование
+                английский язык
             </div>
             <div class="tutor">
-                Максим
+                David Kessel
                 <br/>
-                <img src="/images/userpics/1-maksim.jpg" />
+                <img src="/images/userpics/big/p/k/4a83492f47e39a29f77f4e08729c751d.jpg" />
                 <br/>
-                Программирование
+                английский язык
             </div>
         </div>
     </div>

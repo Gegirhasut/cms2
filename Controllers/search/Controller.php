@@ -21,7 +21,7 @@ class Controller extends SmartyController
 
         $url = '/teachers';
 
-        if (isset($_POST['s_id'])) {
+        if (isset($_POST['s_id']) && !empty($_POST['s_id'])) {
             Application::requireClass('Subject');
             $subject = new Subject();
 
@@ -38,6 +38,14 @@ class Controller extends SmartyController
             } else {
                 $url .= '/' . $subjects[0]['url'];
             }
+        }
+
+        if (isset($_POST['country']) && $_POST['country'] != 0) {
+            $url .= '/' . (int) $_POST['country'];
+        }
+
+        if (isset($_POST['region']) && $_POST['region'] != 0) {
+            $url .= '/' . (int) $_POST['region'];
         }
 
         if (isset($_POST['city']) && $_POST['city'] != 0) {

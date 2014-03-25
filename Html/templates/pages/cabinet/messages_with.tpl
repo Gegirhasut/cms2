@@ -1,4 +1,4 @@
-<script src="/Libs/bootstrap-3.1.0/js/bootstrap-maxlength.min.js"></script>
+<script src="/Libs/Bootstrap-3.1.0/js/bootstrap-maxlength.min.js"></script>
 
 <div style="padding: 0px 0px 0px 15px;">
     <a href="/cabinet/messages">Все диалоги</a>

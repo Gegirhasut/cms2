@@ -24,6 +24,9 @@ class Application
     }
 
     public static function run () {
+        if (!isset($_GET['nosession'])) {
+            session_start();
+        }
         $controllerPath = Router::getControllerPath();
         require_once('Configs/Config.php');
 

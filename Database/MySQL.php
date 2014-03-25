@@ -17,13 +17,15 @@ class MySQL implements IDatabase
     protected $last_id = null;
 
     protected function executeHook(&$hook, $object) {
+        if (empty($hook)) {
+            return;
+        }
         require_once("Models/Hooks/$hook.php");
         call_user_func(array($hook, 'exec'), $this, $object);
         $hook = null;
     }
 
     protected function checkHooks($object, $operation) {
-
         if (isset($object->hooks)) {
             if (isset($object->hooks[$operation])) {
                 if (isset($object->hooks[$operation]['after'])) {
@@ -54,6 +56,9 @@ class MySQL implements IDatabase
     }
 
     public function execute () {
+        if (isset($_GET['debug'])) {
+            echo $this->sql . "<br>";
+        }
         $result = $this->mysqli->query($this->sql);
 
         $this->last_id = $this->mysqli->insert_id;

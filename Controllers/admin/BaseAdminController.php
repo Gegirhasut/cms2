@@ -5,8 +5,6 @@ class BaseAdminController
     protected $smarty = null;
 
     public function __construct () {
-        session_start();
-
         AdminSecurity::checkAdmin();
 
         if (isset(Router::$path[0])) {

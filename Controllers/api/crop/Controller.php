@@ -41,13 +41,13 @@ class Controller extends BaseApiController
         $uploadedPath = $object->images['upload'] . $filePath;
         $smallPath = $object->images['small_path'] . $filePath;
 
-        require_once('helpers/SimpleImage.php');
+        require_once('Helpers/SimpleImage.php');
         $simpleImage = new SimpleImage();
         $simpleImage->load($uploadedPath);
         $simpleImage->crop($x, $y, $x2, $y2, $dest_w, $dest_h);
         $simpleImage->save($smallPath);
 
-        require_once('helpers/json.php');
+        require_once('Helpers/json.php');
         echo arrayToJson(array('path' => $smallPath, 'field' => $_POST['field'], 'file' => $filePath));
 
         exit;

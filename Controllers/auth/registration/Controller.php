@@ -54,19 +54,34 @@ class Controller extends SmartyController
         $email->LoadTemplate('register_for_user');
         $email->SetValue('fio', $user->fio);
         $email->SetValue('email', $user->email);
-        $email->SetValue('password', $user->password);
+        $email->SetValue('password', $_POST['password']);
         $email->SetValue('code', $activation->code);
         $email->Send($user->email, 'Регистрация на сайте Все Учителя');
 
         $email->LoadTemplate('register_for_admin');
         $email->SetValue('fio', $user->fio);
         $email->SetValue('email', $user->email);
-        $email->SetValue('password', $user->password);
+        $email->SetValue('password', $_POST['password']);
+        $email->SetValue('ua', $this->getUserAgent());
+        $email->SetValue('ip', $this->getIp());
         $email->Send($GLOBALS['admin'], 'Новая регистрация на сайте Все Учителя');
 
         echo arrayToJson(array('success' => '/cabinet'));
 
         exit;
+    }
+
+    function getUserAgent() {
+        return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'undefined';
+    }
+
+    function getIp() {
+        $ip = 'REMOTE_ADDR = ' . (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
+        $ip .= '; HTTP_X_FORWARDED_FOR = ' . (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != 'unknown' ? ' FW: '.$_SERVER['HTTP_X_FORWARDED_FOR'] : '');
+        $ip .= '; HTTP_CLIENT_IP = ' . (isset($_SERVER['HTTP_CLIENT_IP']) ? ' CLIENT_IP: '.$_SERVER['HTTP_CLIENT_IP'] : '');
+        $ip .= '; HTTP_VIA = ' . (isset($_SERVER['HTTP_VIA']) ? ' VIA: '.$_SERVER['HTTP_VIA'] : '');
+
+        return $ip;
     }
 
     function display () {

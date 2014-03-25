@@ -11,7 +11,6 @@ class AdminSecurity
     }
 
     public static function logout() {
-        session_start();
         unset($_SESSION['admin_auth']);
         header('location: /' . self::$admin_path . '/');
         exit;

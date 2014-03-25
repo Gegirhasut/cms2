@@ -12,15 +12,11 @@ class UserLogin {
 
         if (!empty($users)) {
             if ($register_in_session) {
-                if(!isset($_SESSION))
-                {
-                    session_start();
-                }
                 $_SESSION['user_auth'] = $users[0];
             }
             $db->sql("UPDATE {$user->table} SET last_login = CURRENT_TIMESTAMP WHERE u_id = $id");
 
-            return $users[0];
+            return $_SESSION['user_auth'];
         } else {
             return null;
         }
@@ -40,15 +36,11 @@ class UserLogin {
 
         if (!empty($users)) {
             if ($register_in_session) {
-                if(!isset($_SESSION))
-                {
-                    session_start();
-                }
                 $_SESSION['user_auth'] = $users[0];
             }
             $db->sql("UPDATE {$user->table} SET last_login = CURRENT_TIMESTAMP WHERE u_id = {$users[0]['u_id']}");
 
-            return $users[0];
+            return $_SESSION['user_auth'];
         } else {
             return null;
         }

@@ -33,7 +33,7 @@ class ContactUser extends Base
             'placeholder' => 'Введите дополнительную информацию о Вас',
             'width' => 9
         ),
-        'subscribe' => array ('type' => 'checkbox', 'title' => 'Подписаться на рассылку'),
+        //'subscribe' => array ('type' => 'checkbox', 'title' => 'Подписаться на рассылку'),
         //'use_contact_form' => array ('type' => 'checkbox', 'title' => 'Использовать форму связи'),
         'user_pic' => array ('type' => 'image', 'title' => 'Мини-фото', 'placeholder' => 'Рекомендуем загрузить мини-фото.<br>1. Нажмите кнопку "Выбрать файл".<br>2. Выберите файл с диска.<br>3. Нажмите кнопку "Загрузить картинку".<br>4. Выбирите область для создания миниатюры.'),
     );

@@ -5,8 +5,9 @@ var city_data = [];
 $(document).ready(function() {
     $("#country").select2({
         minimumInputLength: 1,
+        allowClear: true,
         ajax: {
-            url: '/api/getCountry/?empty=' + $("#country").attr('data-empty'),
+            url: '/api/getCountry/?nosession=1',
             dataType: 'json',
             quietMillis: 300,
             data: function (term) {
@@ -38,8 +39,9 @@ $(document).ready(function() {
 
     $("#region").select2({
         minimumInputLength: 0,
+        allowClear: true,
         ajax: {
-            url: '/api/getRegion/?empty=' + $("#region").attr('data-empty'),
+            url: '/api/getRegion/?nosession=1',
             dataType: 'json',
             quietMillis: 300,
             data: function (term) {
@@ -72,8 +74,9 @@ $(document).ready(function() {
 
     $("#city").select2({
         minimumInputLength: 0,
+        allowClear: true,
         ajax: {
-            url: '/api/getCity/?empty=' + $("#city").attr('data-empty'),
+            url: '/api/getCity/?nosession=1',
             dataType: 'json',
             quietMillis: 300,
             data: function (term) {

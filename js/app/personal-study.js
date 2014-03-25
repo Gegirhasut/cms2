@@ -4,8 +4,9 @@ var r_id_data = [];
 $(document).ready(function() {
     $("#r_id").select2({
         minimumInputLength: 0,
+        allowClear: true,
         ajax: {
-            url: '/api/getRubric/?empty=' + $("#r_id").attr('data-empty'),
+            url: '/api/getRubric/?nosession=1',
             dataType: 'json',
             quietMillis: 300,
             data: function (term) {
@@ -35,8 +36,9 @@ $(document).ready(function() {
 
     $("#s_id").select2({
         minimumInputLength: 0,
+        allowClear: true,
         ajax: {
-            url: '/api/getSubject/?empty=' + $("#s_id").attr('data-empty'),
+            url: '/api/getSubject/?nosession=1',
             dataType: 'json',
             quietMillis: 300,
             data: function (term) {

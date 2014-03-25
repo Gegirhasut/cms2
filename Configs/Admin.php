@@ -6,8 +6,8 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     );
 } else {
     $GLOBALS['admin'] = array (
-        'login' => 'admin',
-        'password' => 'demo',
+        'login' => 'max077@mail.ru',
+        'password' => 'tutors123!',
     );
 }
 class Admin {

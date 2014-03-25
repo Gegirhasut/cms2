@@ -29,7 +29,7 @@ function delete_object(object, identity) {
 var source = [];
 var prev_search = '';
 
-function fill_select(key, show, obj) {
+function fill_select(key, show, obj, key_name) {
     var search = $('#filter_' + key).val();
     if (search.length == 0) {
         return;
@@ -37,7 +37,7 @@ function fill_select(key, show, obj) {
     if (search == prev_search) {
         return;
     }
-    $('#' + key).val('');
+    $('#' + key_name).val('');
     prev_search = search;
     var url = '/admin/api/get/' + obj + '/?' + show + '=' + search + '%';
     $.post(

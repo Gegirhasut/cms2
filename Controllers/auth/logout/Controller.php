@@ -4,8 +4,6 @@ require_once ('Database/DBFactory.php');
 class Controller
 {
     function display () {
-        session_start();
-
         if (isset($_SESSION['user_auth'])) {
             unset($_SESSION['user_auth']);
         }

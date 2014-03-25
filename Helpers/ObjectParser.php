@@ -34,7 +34,10 @@ class ObjectParser
 
         foreach($object->fields as $key => &$field) {
             if (isset($input[$key])) {
-                if ($field['type'] == 'password') {
+                if ($field['type'] == 'generated') {
+
+                }
+                elseif ($field['type'] == 'password') {
                     if (!empty($input[$key])) {
                         $field['value'] = md5($input[$key] . $GLOBALS['salt']);
                     }

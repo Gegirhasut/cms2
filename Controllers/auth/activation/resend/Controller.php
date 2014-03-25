@@ -5,7 +5,6 @@ Application::requireClass('Activation');
 class Controller
 {
     function display () {
-        session_start();
         if (!isset($_SESSION['user_auth'])) {
             header('location: /auth/login');
             exit;

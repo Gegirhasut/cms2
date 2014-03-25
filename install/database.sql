@@ -1,10 +1,9 @@
 CREATE TABLE IF NOT EXISTS `at_users` (
   u_id int(11) NOT NULL AUTO_INCREMENT,
-  type int(11) NOT NULL DEFAULT 2 COMMENT '1 - teacher, 2 - student',
+  subjects int(11) NOT NULL DEFAULT 0,
   email varchar(255) NOT NULL DEFAULT '',
   password varchar(32) NOT NULL DEFAULT '',
   fio varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  zip varchar(20) DEFAULT NULL,
   phone varchar(100) DEFAULT NULL,
   country int(11) NOT NULL DEFAULT 0,
   city int(11) NOT NULL DEFAULT 0,
@@ -18,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `at_users` (
   messages int(11) DEFAULT 0,
   i_am_teacher bool DEFAULT false,
   last_login timestamp default CURRENT_TIMESTAMP,
-  s_id int(11) NOT NULL DEFAULT 0,
+  source_id int(11) DEFAULT NULL,
   PRIMARY KEY (u_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 

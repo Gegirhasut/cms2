@@ -61,7 +61,7 @@ class Controller extends BaseApiController
         $to = $object->images['upload'] . $path . "/$fileName.$extension";
 
         if (move_uploaded_file($from, $to)) {
-            require_once("helpers/SimpleImage.php");
+            require_once("Helpers/SimpleImage.php");
             $image = new SimpleImage();
             $image->load($to);
 
@@ -95,7 +95,7 @@ class Controller extends BaseApiController
     }
 
     function checkUploadFile ($fileElementName) {
-        require_once('helpers/json.php');
+        require_once('Helpers/json.php');
         $result = array();
 
         if(!empty($_FILES[$fileElementName]['error']))
