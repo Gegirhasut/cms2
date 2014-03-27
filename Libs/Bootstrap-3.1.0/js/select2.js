@@ -18,6 +18,7 @@ Apache License or the GPL Licesnse is distributed on an "AS IS" BASIS, WITHOUT W
 CONDITIONS OF ANY KIND, either express or implied. See the Apache License and the GPL License for
 the specific language governing permissions and limitations under the Apache License and the GPL License.
 */
+var lastResults = null;
 (function ($) {
     if(typeof $.fn.each2 == "undefined") {
         $.extend($.fn, {
@@ -441,17 +442,31 @@ the specific language governing permissions and limitations under the Apache Lic
                     }
                 }
 
-                $.extend(params, {
-                    url: url,
-                    dataType: options.dataType,
-                    data: data,
-                    success: function (data) {
-                        // TODO - replace query.page with query so users have access to term, page, etc.
-                        var results = options.results(data, query.page);
-                        query.callback(results);
+                if (typeof options.maxSearchLetters !== 'undefined' && query.term.length > options.maxSearchLetters && lastResults != null) {
+                    data = lastResults;
+                    var filteredResults = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].text.toLowerCase().indexOf(query.term.toLowerCase()) == 0) {
+                            filteredResults [filteredResults.length] = data[i];
+                        }
                     }
-                });
-                handler = transport.call(self, params);
+                    var results = options.results(filteredResults, query.page);
+                    query.callback(results);
+                } else {
+                    $.extend(params, {
+                        url: url,
+                        dataType: options.dataType,
+                        data: data,
+                        success: function (data) {
+                            // TODO - replace query.page with query so users have access to term, page, etc.
+                            console.log(1);
+                            lastResults = data;
+                            var results = options.results(data, query.page);
+                            query.callback(results);
+                        }
+                    });
+                    handler = transport.call(self, params);
+                }
             }, quietMillis);
         };
     }

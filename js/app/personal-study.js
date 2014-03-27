@@ -9,6 +9,7 @@ $(document).ready(function() {
             url: '/api/getRubric/?nosession=1',
             dataType: 'json',
             quietMillis: 300,
+            maxSearchLetters: 0,
             data: function (term) {
                 return {
                     title: term
@@ -41,6 +42,7 @@ $(document).ready(function() {
             url: '/api/getSubject/?nosession=1',
             dataType: 'json',
             quietMillis: 300,
+            maxSearchLetters: 0,
             data: function (term) {
                 return {
                     r_id: $('#r_id').val(),

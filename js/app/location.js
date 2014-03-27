@@ -9,7 +9,7 @@ $(document).ready(function() {
         ajax: {
             url: '/api/getCountry/?nosession=1',
             dataType: 'json',
-            quietMillis: 300,
+            maxSearchLetters: 1,
             data: function (term) {
                 return {
                     title: term
@@ -44,6 +44,7 @@ $(document).ready(function() {
             url: '/api/getRegion/?nosession=1',
             dataType: 'json',
             quietMillis: 300,
+            maxSearchLetters: 0,
             data: function (term) {
                 return {
                     country_id: $('#country').val(),
@@ -79,6 +80,7 @@ $(document).ready(function() {
             url: '/api/getCity/?nosession=1',
             dataType: 'json',
             quietMillis: 300,
+            maxSearchLetters: 0,
             data: function (term) {
                 return {
                     country_id: $('#country').val(),
