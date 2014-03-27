@@ -77,6 +77,7 @@
                                 <li {if $m.object eq $object}class="active"{/if}><a href="{$m.url}">{$mv}</a></li>
                             {/if}
                         {/foreach}
+                        <li><a target="_blank" href="/">Сайт</a></li>
                     </ul>
                 </div>
             </div>
