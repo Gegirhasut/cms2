@@ -173,6 +173,11 @@ class MySQL implements IDatabase
         return $this;
     }
 
+    public function having ($where) {
+        $this->sql .= " HAVING $where";
+        return $this;
+    }
+
     public function insert ($object, $ignore = false) {
         $this->checkHooks($object, 'insert');
 

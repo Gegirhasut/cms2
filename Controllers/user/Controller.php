@@ -102,7 +102,7 @@ class Controller extends SmartyController
             ->where($user->identity . " = $user_id AND status = 1")
             ->fetch();
 
-        if (empty($user)) {
+        if (empty($users)) {
             throw new Exception404();
         }
 

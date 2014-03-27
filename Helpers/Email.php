@@ -5,7 +5,7 @@ class Email
 	 
 	public function LoadTemplate($name)
 	{
-		$this->_body = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/Email/Templates/$name.html");
+		$this->_body = file_get_contents("Email/Templates/$name.html");
 	}
 	
 	public function SetValue($name, $value)
@@ -15,9 +15,9 @@ class Email
 	
 	public function Send($to, $subject, $reply = null, $copy = true)
 	{
-        $base_template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/Email/Templates/base.html");
+        $base_template = file_get_contents("Email/Templates/base.html");
         $this->_body = str_replace("[content]", $this->_body, $base_template);
-        $this->SetValue('url', 'http://' . $_SERVER['SERVER_NAME']);
+        $this->SetValue('url', 'http://alltutors.ru');
 
 		if ($reply == null) {
 			$reply = $GLOBALS['from'];
@@ -28,15 +28,18 @@ class Email
 		$subject = "=?utf-8?b?" . base64_encode($subject) . "?=";
 		
 		if ($_SERVER['SERVER_NAME'] == 'localhost') {
-			return;
-			echo $this->_body;
-			exit;
+			//return;
+			echo $this->_body . "<br>";
+            return;
+			//exit;
 		}
 
-		mail($to, $subject, $this->_body, $this->_getHeaders($reply));
+		$result = mail($to, $subject, $this->_body, $this->_getHeaders($reply));
 		if (strpos($to, $GLOBALS['admin']) === false && $copy) {
 			mail($GLOBALS['admin'], "[Ушло клиенту] " . $subject, $this->_body, $this->_getHeaders($reply));
 		}
+
+        return $result;
 	}
 	
 	public function SendWithAttachments($to, $subject, $files, $reply = null, $copy = true) {

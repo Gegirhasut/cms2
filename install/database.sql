@@ -17,8 +17,18 @@ CREATE TABLE IF NOT EXISTS `at_users` (
   messages int(11) DEFAULT 0,
   i_am_teacher bool DEFAULT false,
   last_login timestamp default CURRENT_TIMESTAMP,
+  last_notified timestamp default '0000-00-00 00:00:00',
   source_id int(11) DEFAULT NULL,
   PRIMARY KEY (u_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `at_users_autologin` (
+  ua_id int(11) NOT NULL AUTO_INCREMENT,
+  u_id int(11) NOT NULL,
+  code varchar(32) not null,
+  page varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (ua_id),
+  UNIQUE KEY (u_id, page)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `at_reg_sources` (

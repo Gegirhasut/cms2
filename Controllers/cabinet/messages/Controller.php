@@ -59,7 +59,7 @@ class Controller extends BaseController
         $this->db->insert($message)->execute();
         $m_id = $this->db->lastId();
 
-        require_once('Helpers/Email.php');
+        /*require_once('Helpers/Email.php');
         $email = new Email();
 
         $email->LoadTemplate('new_message');
@@ -67,7 +67,7 @@ class Controller extends BaseController
         $email->SetValue('from', $_SESSION['user_auth']['fio']);
         $email->SetValue('subject', $message->subject);
         $email->SetValue('message', $message->message);
-        $email->Send($user[0]['email'], 'Вам пришло новое сообщение на сайте Все Учителя!');
+        $email->Send($user[0]['email'], 'Вам пришло новое сообщение на сайте Все Учителя!');*/
 
         $_SESSION['cabinet_message'][] = "Сообщение успешно отправлено!";
 
