@@ -41,17 +41,6 @@ class User extends Base
                 'show' => 'title'
             )
         ),
-        'city' => array (
-            'type' => 'select',
-            'title' => 'Город',
-            'check' => array ('not_empty'),
-            'relation' => array (
-                'type' => 'oneToMany',
-                'join' => 'City',
-                'on' => 'city_id',
-                'show' => 'title'
-            )
-        ),
         'region' => array (
             'type' => 'select',
             'title' => 'Регион',
@@ -61,6 +50,25 @@ class User extends Base
                 'join' => 'Region',
                 'on' => 'region_id',
                 'show' => 'title'
+            ),
+            'require' => array (
+                'name' => 'country_id',
+                'id' => 'country_id'
+            )
+        ),
+        'city' => array (
+            'type' => 'select',
+            'title' => 'Город',
+            'check' => array ('not_empty'),
+            'relation' => array (
+                'type' => 'oneToMany',
+                'join' => 'City',
+                'on' => 'city_id',
+                'show' => 'title',
+            ),
+            'require' => array (
+                'name' => 'region_id',
+                'id' => 'region_id'
             )
         ),
         'status' => array (

@@ -29,7 +29,7 @@ function delete_object(object, identity) {
 var source = [];
 var prev_search = '';
 
-function fill_select(key, show, obj, key_name) {
+function fill_select(key, show, obj, key_name, require_key, require_id) {
     var search = $('#filter_' + key).val();
     if (search.length == 0) {
         return;
@@ -37,9 +37,14 @@ function fill_select(key, show, obj, key_name) {
     if (search == prev_search) {
         return;
     }
+    var require = '';
+    if (typeof require_key !== 'undefined') {
+        require = '&' + require_key + '=' + $('#' + require_id).val();
+    }
+
     $('#' + key_name).val('');
     prev_search = search;
-    var url = '/admin/api/get/' + obj + '/?' + show + '=' + search + '%';
+    var url = '/admin/api/get/' + obj + '/?' + show + '=' + search + '%' + require;
     $.post(
         url,
         {

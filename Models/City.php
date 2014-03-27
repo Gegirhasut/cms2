@@ -5,7 +5,7 @@ class City extends Base
 {
     public $table = 'cities';
     public $identity = 'city_id';
-    public $api_fields = array('city_id' => 1, 'title' => 1 );
+    public $api_fields = array('city_id' => 1, 'title' => 1, 'region_id' => 1);
 
     public $fields = array (
         'city_id' => array ('type' => 'integer', 'nolist' => 1),
