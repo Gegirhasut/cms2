@@ -1,174 +1,84 @@
-    3  yum install -y vsftpd
-    4  servie vsftpd start
-    5  chkconfig vsftpd on 35
-    8  service vsftpd start
-    9  vim /etc/vsftpd/vsftpd.conf
-   10  vim /etc/vsftpd/chroot_list
-   13  service vsftpd restart
-   15  wget -P /tmp rpm -Uvh http://epel.blizoo.mk/epel/6/i386/epel-release-6-8.noarch.rpm
-   16  rpm -Uvh /tmp/epel-release-6-8.noarch.rpm
-   17  rm -f /tmp/epel-release-6-8.noarch.rpm
-   18  yum install mysql mysql-server
-   19  yum install mysql-client
-   20  service mysqld restart
-   21  mysql_secure_installation
-   22  mysql -uroot -pK7_R\!oYhN89f0
-   24  vim /etc/my.cnf
-   25  yum install nginx
-   26  cd /etc/nginx/
-   27  cp nginx.conf{,.orig}
-   29  grep -c 'model name' /proc/cpuinfo
-   30  vim nginx.conf
-   31  /etc/init.d/nginx restart
-   32  mkdir /etc/nginx/{sites-available,sites-enabled}
-   33  ls /etc/nginx/conf.d/
-   34  rm -f /etc/nginx/conf.d/*
-   35  vim nginx.conf
-   36  cat > /etc/nginx/conf.d/caches.conf
-   37  ls /etc/nginx/conf.d/
-   38  vim /etc/nginx/conf.d/caches.conf
-   39  vim /etc/nginx/sites-available/alltutors.ru
-   40  mkdir -p /var/www/html/alltutors.ru
-   41  vim /var/www/html/alltutors.ru/index.html
-   42  vim /etc/nginx/sites-available/alltutors.ru
-   43  yum install php-fpm php-mysql
-   44  chkconfig --levels 235 nginx on
-   45  /etc/init.d/nginx start
-   46  vim /etc/php.ini
-   47  vim /etc/php-fpm.conf
-   48  cp /etc/php-fpm.d/www.conf{,.orig}
-   49  vim /etc/php-fpm.d/www.conf
-   50  /etc/init.d/php-fpm restart
-   51  yum install php-pecl-apc
-   52  vim /etc/php.d/apc.ini
-   53  vim /etc/php-fpm.d/www.conf
-   54  vim /etc/nginx/sites-available/alltutors.ru
-   55  vim /etc/nginx/sites-available/default
-   56  mkdir -p /srv/www/default
-   57  rm -rf /srv/www/default
-   58  mkdir -p /var/www/html/default
-   59  vim /var/www/html/default/index.htm
-   60  vim /etc/nginx/sites-available/alltutors.ru
-   61  mkdir /var/www/html/alltutors.ru/public
-   62  nginx -t
-   63  service nginx restart
-   64  service php-fpm restart
-   65  service mysqld restart
-   66  for s in nginx php-fpm mysqld; do chkconfig $s on; done
-   67  vim /etc/nginx/nginx.conf
-   68  cd /var/www/html/
-   69  ls -la
-   70  chown -R nginx:nginx
-   71  chown * -R nginx:nginx
-   72  chown -R nginx:nginx *
-   73  ls -la
-   74  ls -la alltutors.ru/
-   75  ls -la alltutors.ru/public/
-   76  vim alltutors.ru/public/index.php
-   77  ls -la alltutors.ru/public/
-   78  cd alltutors.ru/public/
-   79  chown nginx:nginx index.php
-   80  ls -la
-   81  less /var/log/nginx/error.log
-   82  less /var/log/nginx/access.log
-   83  less /var/log/php-fpm/error.log
-   84  less /var/log/httpd/access_log
-   85  less /var/log/httpd/error_log
-   86  /etc/init.d/httpd status
-   87  /etc/init.d/httpd stop
-   88  /etc/init.d/nginx status
-   89  /etc/init.d/nginx stop
-   90  /etc/init.d/nginx start
-   91  vim /etc/nginx/nginx.conf
-   92  vim /etc/nginx/sites-available/alltutors.ru
-   93  netstat -nlp | grep 80
-   94  netstat -nlp
-   95  /etc/init.d/nginx start
-   96  vim /etc/nginx/nginx.conf
-   97  ls /etc/nginx/sites-enabled/
-   98  ls /etc/nginx/sites-available/
-   99  vim /etc/nginx/nginx.conf
-  100  /etc/init.d/nginx restart
-  101  vim /etc/nginx/nginx.conf
-  102  vim /etc/nginx/sites-available/alltutors.ru
-  103  /etc/init.d/nginx restart
-  104  touch "/var/log/alltutors.ru/nginx.access_log"
-  105  vim "/var/log/alltutors.ru/nginx.access_log"
-  106  vim /var/log/alltutors.ru/nginx.access_log
-  107  ls /var/log/alltutors.ru/
-  108  mkdir /var/log/alltutors.ru/
-  109  vim /var/log/alltutors.ru/nginx.access_log
-  110  /etc/init.d/nginx restart
-  111  vim /etc/nginx/sites-available/alltutors.ru
-  112  /etc/init.d/nginx restart
-  113  passwd nginx
-  114  /etc/init.d/nginx restart
+yum install -y vsftpd
+service vsftpd start
+chkconfig vsftpd on 35
+# define
+vim /etc/vsftpd/vsftpd.conf
+# add nginx
+vim /etc/vsftpd/chroot_list
+service vsftpd restart
+wget -P /tmp rpm -Uvh http://epel.blizoo.mk/epel/6/i386/epel-release-6-8.noarch.rpm
+rpm -Uvh /tmp/epel-release-6-8.noarch.rpm
+rm -f /tmp/epel-release-6-8.noarch.rpm
+yum install mysql mysql-server
+service mysqld restart
+mysql_secure_installation
+mysql -uroot -pK7_R\!oYhN89f0
+vim /etc/my.cnf
+service mysqld restart
+yum install nginx
+cd /etc/nginx/
+cp nginx.conf{,.orig}
+grep -c 'model name' /proc/cpuinfo
+vim nginx.conf
+/etc/init.d/nginx restart
+mkdir /etc/nginx/{sites-available,sites-enabled}
+rm -f /etc/nginx/conf.d/*
+vim /etc/nginx/conf.d/caches.conf
+vim /etc/nginx/sites-available/alltutors.ru
+mkdir -p /var/www/html/alltutors.ru
+mkdir /var/www/html/alltutors.ru/public
+chkconfig --levels 235 nginx on
+/etc/init.d/nginx start
+yum install php-fpm php-mysql
+mkdir /var/log/alltutors.ru/
+vim /var/log/alltutors.ru/nginx.access_log
+yum remove httpd
+/etc/init.d/nginx restart
+vim /etc/php.ini
+vim /etc/php-fpm.conf
+cp /etc/php-fpm.d/www.conf{,.orig}
+vim /etc/php-fpm.d/www.conf
+/etc/init.d/php-fpm restart
+yum install php-pecl-apc
+vim /etc/php.d/apc.ini
+service nginx restart
+service php-fpm restart
+service mysqld restart
+for s in nginx php-fpm mysqld; do chkconfig $s on; done
+cd /var/www/html/
+chown -R nginx:nginx *
+netstat -nlp | grep 80
+passwd nginx
   115  visudo
-  116  vim /etc/ssh/sshd_config
-  117  /etc/init.d/sshd restart
-  118  less /var/log/secure
-  119  less /var/log/messages
-  120  less /var/log/secure
-  121  ssh 92.63.98.78
-  122  vim /etc/ssh/sshd_config
-  123  /etc/init.d/sshd restart
-  124  vim /etc/ssh/sshd_config
-  125  /etc/init.d/sshd restart
-  126  vim /etc/ssh/sshd_config
-  127  /etc/init.d/sshd restart
-  128  vim /etc/ssh/sshd_config
-  129  /etc/init.d/sshd restart
-  130  ls
-  131  ls -la
-  132  less /var/log/nginx/access.log
-  133  less /var/log/nginx/error.log
-  134  mkdir /var/lib/php/session
-  135  ls /var/lib/php/session
-  136  ls /var/lib/php/
-  137  ls -la /var/lib/php/
-  138  chown -R nginx:nginx /var/lib/php/session
-  139  ls -la /var/lib/php/
-  140  less /var/log/nginx/error.log
-  141  cd /var/www/html/alltutors.ru/public/
-  142  ls -la
-  143  ls -la Html/
-  144  vim Database/MySQL.php
-  145  vim Configs/Config.php
-  146  mysql -uroot -pK7_R\!oYhN89f0
-  147  vim Configs/Config.php
-  148  less /var/log/nginx/error.log
-  149  vim index.php
-  150  less /var/log/nginx/error.log
-  151  less /var/log/nginx/access.log
-  152  less /var/log/nginx/error.log
-  153  less /var/log/alltutors.ru/nginx.access_log
-  154  less /var/log/php-fpm/error.log
-  155  ls
-  156  cd /var/www/html/alltutors.ru/public/
-  157  ls -la
-  158  cd Html/
-  159  ls -la
-  160  chmod 777 cache
-  161  chmod 777 templates_c
-  162  ls -la cache/
-  163  rm -rf cache/*
-  164  rm -rf templates_c/*
-  165  ls -la cache/
-  166  ls -la templates_c/
-  167  less /var/log/alltutors.ru/nginx.access_log
-  168  less /var/log/nginx/error.log
-  169  cd ..
-  170  vim /etc/php.ini
-  171  /etc/init.d/php-fpm restart
-  172  vim /etc/php.ini
-  173  vim /etc/nginx/nginx.conf
-  174  vim /etc/nginx/sites-available/alltutors.ru
-  175  vim /etc/nginx/sites-available/default
-  176  vim /etc/nginx/sites-available/alltutors.ru
-  177  less /var/log/php-fpm/www-slow.log
-  178  less /var/log/php-fpm/error.log
-  179  less /var/log/nginx/error.log
-  180  less /var/log/alltutors.ru/nginx.access_log
+mkdir /var/lib/php/session
+chown -R nginx:nginx /var/lib/php/session
+/etc/init.d/nginx stop
+/etc/init.d/vsftpd stop
+/etc/init.d/php-fpm stop
+usermod -m -d /var/www/html/alltutors.ru/public/ nginx
+/etc/init.d/vsftpd start
+/etc/init.d/php-fpm start
+/etc/init.d/nginx start
+chmod 750 /etc/cron.daily/server_backup.sh
+chmod 750 /etc/cron.hourly/messages.sh
+yum install exim 
+#!!!!! remove local_domains in dnslookup, add smtp_transport
+vim /etc/exim/exim.conf
+# modify sendmail_path
+vim /etc/php.ini
+yum remove sendmail
+yum install php-mbstring
+yum install php-gd
+
+cd /var/www/html/alltutors.ru/public/
+cd Html/
+chmod 755 cache
+chmod 755 templates_c
+
+vim Database/MySQL.php
+vim Configs/Config.php
+vim Configs/Config.php
+
   181  mysql -uroot -psK7_R\!oYhN89f0
   182  service mysql status
   183  /etc/init.d/mysqld status
@@ -179,52 +89,12 @@
   188  mysql -uroot -psK7_R\!oYhN89f0 -h 127.0.0.1
   189  mysql_secure_installation
   190  mysql -uroot -pK7_R\!oYhN89f0
-  191  less /var/log/nginx/error.log
-  192  vim /etc/nginx/nginx.conf
-  193  /etc/init.d/nginx restart
   194  less Configs/Config.php
-  195  vim /etc/nginx/nginx.conf
-  196  vim /etc/nginx/sites-available/alltutors.ru
-  197  /etc/init.d/nginx restart
-  198  vim /etc/nginx/sites-available/alltutors.ru
-  199  /etc/init.d/nginx restart
-  200  vim /etc/nginx/sites-available/alltutors.ru
-  201  /etc/init.d/nginx restart
-  202  vim /etc/nginx/sites-available/alltutors.ru
-  203  /etc/init.d/nginx restart
-  204  vim /etc/nginx/sites-available/alltutors.ru
-  205  /etc/init.d/nginx restart
-  206  vim /etc/nginx/sites-available/alltutors.ru
-  207  /etc/init.d/nginx restart
-  208  vim /etc/nginx/sites-available/alltutors.ru
-  209  /etc/init.d/nginx restart
-  210  vim /etc/nginx/sites-available/alltutors.ru
-  211  /etc/init.d/nginx restart
-  212  less /etc/nginx/nginx.conf
-  213  less /etc/nginx/sites-available/alltutors.ru
-  214  less /etc/nginx/sites-available/default
   215  mysql -uroot -pK7_R\!oYhN89f0 alltutors_ru < /var/www/html/alltutors.ru/public/Backups/alltutors_ru.sql
   216  mysql -uroot -pK7_R\!oYhN89f0 alltutors_ru
   217  drop table cities;
   218  mysql -uroot -pK7_R\!oYhN89f0 alltutors_ru
   219  vim /etc/vsftpd/vsftpd.conf
-  220  /etc/init.d/vsftpd restart
-  221  sudo usermod -d /var/www/html/alltutors.ru/public/
-  222  sudo usermod -d /var/www/html/alltutors.ru/public/ nginx
-  223  usermod -d /var/www/html/alltutors.ru/public/ nginx
-  224  usermod -m -d /var/www/html/alltutors.ru/public/ nginx
-  225  /etc/init.d/nginx stop
-  226  usermod -m -d /var/www/html/alltutors.ru/public/ nginx
-  227  /etc/init.d/vsftpd stop
-  228  usermod -m -d /var/www/html/alltutors.ru/public/ nginx
-  229  ps aux
-  230  ps aux | grep nginx
-  231  /etc/init.d/php-fpm stop
-  232  ps aux | grep nginx
-  233  usermod -m -d /var/www/html/alltutors.ru/public/ nginx
-  234  /etc/init.d/vsftpd start
-  235  /etc/init.d/php-fpm start
-  236  /etc/init.d/nginx start
   237  vim /etc/php.ini
   238  vim /etc/php.d/curl.ini
   239  vim /etc/php.d/mbstring.ini
@@ -317,48 +187,14 @@
   326  ls -la
   327  cd ..
   328  ls -la
-  329  ifconfig
-  330  less /var/log/nginx/error.log
-  331  vim /etc/nginx/nginx.conf
-  332  vim /etc/nginx/sites-available/alltutors.ru
-  333  /etc/init.d/nginx reload
-  334  vim /etc/nginx/sites-available/alltutors.ru
-  335  /etc/init.d/nginx reload
-  336  vim /etc/nginx/sites-available/alltutors.ru
-  337  /etc/init.d/nginx reload
-  338  vim /etc/nginx/sites-available/alltutors.ru
-  339  /etc/init.d/nginx reload
-  340  vim /etc/nginx/sites-available/alltutors.ru
-  341  /etc/init.d/nginx reload
-  342  vim /etc/nginx/sites-available/alltutors.ru
-  343  /etc/init.d/nginx reload
-  344  vim /etc/nginx/sites-available/alltutors.ru
-  345  /etc/init.d/nginx reload
-  346  vim /etc/nginx/sites-available/alltutors.ru
-  347  /etc/init.d/nginx reload
-  348  vim /etc/nginx/sites-available/alltutors.ru
-  349  vim /etc/nginx/nginx.conf
-  350  /etc/init.d/nginx reload
-  351  vim /etc/nginx/nginx.conf
-  352  /etc/init.d/nginx reload
-  353  vim /etc/nginx/sites-available/alltutors.ru
-  354  /etc/init.d/nginx reload
-  355  yum install php-gd
-  356  /etc/init.d/php-fpm restart
-  357  /etc/init.d/nginx reload
-  358  vim /etc/nginx/sites-available/alltutors.ru
-  359  vim /etc/nginx/nginx.conf
-  360  /etc/init.d/nginx restart
-  361  uptime
-  362  /etc/init.d/php-fpm status
-  363  uptime
-  364  vim /etc/nginx/nginx.conf
-  365  vim /etc/nginx/sites-available/alltutors.ru
-  366  /etc/init.d/php-fpm restart
-  367  /etc/init.d/nginx restart
-  368  /etc/init.d/httpd stop
-  369  /etc/init.d/nginx restart
   370  uptime
   371  less /var/log/messages
-  372  yum list httpd
-  373  yum remove httpd
+
+yum install memcached
+chkconfig --levels 235 memcached on
+/etc/init.d/memcached start
+yum install php-pecl-memcache
+
+rm -rf /etc/localtime
+ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+date

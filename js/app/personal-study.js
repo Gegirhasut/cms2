@@ -8,7 +8,6 @@ $(document).ready(function() {
         ajax: {
             url: '/api/getRubric/?nosession=1',
             dataType: 'json',
-            quietMillis: 300,
             maxSearchLetters: 0,
             data: function (term) {
                 return {
@@ -41,7 +40,6 @@ $(document).ready(function() {
         ajax: {
             url: '/api/getSubject/?nosession=1',
             dataType: 'json',
-            quietMillis: 300,
             maxSearchLetters: 0,
             data: function (term) {
                 return {

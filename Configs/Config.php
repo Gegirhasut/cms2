@@ -17,7 +17,11 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
     );
 }
 
+$GLOBALS['memcache'] = array (
+    'ip' => '127.0.0.1'
+);
+
 $GLOBALS['salt'] = 'S1!h_A0';
 $GLOBALS['admin'] = 'max077@mail.ru';
-$GLOBALS['from'] = 'max077@mail.ru';
+$GLOBALS['from'] = 'support@alltutors.ru';
 $GLOBALS['from_name'] = 'Все учителя';

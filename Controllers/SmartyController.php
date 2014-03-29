@@ -26,7 +26,11 @@ class SmartyController
         }
     }
 
-    function display () {
-        $this->smarty->display('template.tpl');
+    function display ($cache = false) {
+        if ($cache) {
+            return $this->smarty->fetch('template.tpl');
+        } else {
+            $this->smarty->display('template.tpl');
+        }
     }
 }

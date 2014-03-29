@@ -1,6 +1,7 @@
 <?php
 require_once('Controllers/SmartyController.php');
 require_once ('Database/DBFactory.php');
+require_once ('Database/Memcache.php');
 
 class Controller extends SmartyController
 {
@@ -73,15 +74,32 @@ class Controller extends SmartyController
         $this->smarty->assign('teachers', $teachers);
     }
 
+    function generatePage () {
+        $this->assignSubjects();
+        $this->assignTeachers();
+
+        $this->smarty->assign('page', 'main');
+    }
+
     function display () {
         if (count(Router::$path) > 0) {
             throw new Exception404();
         }
 
-        $this->assignSubjects();
-        $this->assignTeachers();
+        $memcache = MemcacheServer::connect();
 
-        $this->smarty->assign('page', 'main');
-        parent::display();
+        if ($memcache) {
+            $pageKey = 'main';
+            $pageKey = MemcacheServer::tryToShowPage($pageKey, true);
+
+            $this->generatePage();
+            $content = parent::display(true);
+
+            $memcache->set($pageKey, $content, 0, 60 * 60);
+            echo $content;
+        } else {
+            $this->generatePage();
+            parent::display();
+        }
     }
 }

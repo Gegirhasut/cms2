@@ -47,6 +47,7 @@ class MySQL implements IDatabase
             $params['port'] = 3306;
         }
         $this->mysqli = mysqli_connect($params['host'], $params['user'], $params['password'], $params['database'], $params['port']);
+        $this->mysqli->query("SET NAMES utf8");
 
         if ($this->mysqli->connect_errno) {
             throw new Exception("Failed to connect to MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error);
