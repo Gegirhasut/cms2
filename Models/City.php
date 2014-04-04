@@ -9,7 +9,7 @@ class City extends Base
 
     public $fields = array (
         'city_id' => array ('type' => 'integer', 'nolist' => 1),
-        'country_id' => array ('type' => 'select',
+        'country_id' => array ('type' => 'select2',
             'title' => 'Страна',
             'relation' => array (
                 'type' => 'oneToMany',
@@ -18,7 +18,7 @@ class City extends Base
                 'show' => 'title'
             )
         ),
-        'region_id' => array ('type' => 'select',
+        'region_id' => array ('type' => 'select2',
             'title' => 'Регион',
             'relation' => array (
                 'type' => 'oneToMany',

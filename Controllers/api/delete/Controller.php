@@ -4,11 +4,6 @@ require_once ('Database/DBFactory.php');
 class Controller
 {
     function display () {
-        if (!isset($_SESSION['user_auth'])) {
-            echo '0';
-            exit;
-        }
-
         if (count(Router::$path) < 2) {
             echo '0';
             exit;
@@ -32,6 +27,11 @@ class Controller
             exit;
         }
 
+        if (!isset($_SESSION[$object->api_operations['delete']['session_name']])) {
+            echo '0';
+            exit;
+        }
+
         /**
          * var MySQL
          */
@@ -39,7 +39,7 @@ class Controller
 
         $where = $object->identity . ' = ' . $identity;
 
-        $where .= ' AND u_id = ' . $_SESSION['user_auth']['u_id'];
+        $where .= ' AND ' . $object->api_operations['delete']['field_name'] . ' = ' . $_SESSION[$object->api_operations['delete']['session_name']][$object->api_operations['delete']['field_name']];
 
         $object->{$object->identity} = $identity;
 

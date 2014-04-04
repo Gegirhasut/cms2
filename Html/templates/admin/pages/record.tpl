@@ -23,7 +23,7 @@
                                 {if file_exists($file_name_full)}
                                     {include file=$file_name_tpl}
                                 {else}
-                                    <input type="text" style="width:400px" name="{$key}" value="{$values[$key]}" />
+                                    <input type="text" style="width:400px" id="{$key}" name="{$key}" value="{$values[$key]}" {if isset($field.events)}{foreach from=$field.events item=event key=action}{$action}="{$event}"{/foreach}{/if} />
                                 {/if}
                             {/if}
                         </td>

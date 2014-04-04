@@ -1,7 +1,6 @@
 <link href="/Libs/Bootstrap-3.1.0/css/select2.css" rel="stylesheet"/>
 <script src="/Libs/Bootstrap-3.1.0/js/select2.js"></script>
-<script type="text/javascript" src="/js/app/personal-study.js"></script>
-<script type="text/javascript" src="/js/app/location.js"></script>
+<script type="text/javascript" src="/js/app/location-search.js"></script>
 <script type="text/javascript" src="/js/app/bootstrap-form.js"></script>
 
 <form class="form-horizontal" role="form" id="form" action="/search">

@@ -59,6 +59,8 @@ class Controller extends BaseAdminController
             foreach ($object->fields as $field => &$field_properties) {
                 switch ($field_properties['type']) {
                     case 'select':
+                    case 'select2':
+                    case 'select2_opt':
                         if (!isset($field_properties['values']) && isset($relationValues[$field])) {
                             Application::requireClass($field_properties['relation']['join']);
                             $join = new ReflectionClass($field_properties['relation']['join']);

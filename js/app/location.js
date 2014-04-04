@@ -7,7 +7,7 @@ $(document).ready(function() {
         minimumInputLength: 1,
         allowClear: true,
         ajax: {
-            url: '/api/getCountry/?nosession=1',
+            url: '/api/select2/Country/?nosession=1',
             dataType: 'json',
             maxSearchLetters: 1,
             data: function (term) {
@@ -35,7 +35,16 @@ $(document).ready(function() {
         $("#region").select2("val", '');
         $("#city").select2("enable", false);
         $("#city").select2("val", '');
+        lastResults = null;
     });
+
+    if ($("#country").val() == '') {
+        $("#region").select2("enable", false);
+    }
+
+    if ($("#country").val() == '') {
+        $("#city").select2("enable", false);
+    }
 
     $("#region").select2({
         minimumInputLength: 0,
@@ -66,17 +75,15 @@ $(document).ready(function() {
     $('#region').change(function() {
         $("#city").select2("enable", true);
         $("#city").select2("val", '');
+        lastResults = null;
     });
 
-    if ($("#country").val() == '') {
-        $("#region").select2("enable", false);
-    }
 
     $("#city").select2({
         minimumInputLength: 0,
         allowClear: true,
         ajax: {
-            url: '/api/getCity/?nosession=1',
+            url: '/api/select2/City/?nosession=1',
             dataType: 'json',
             maxSearchLetters: 0,
             data: function (term) {
@@ -99,7 +106,4 @@ $(document).ready(function() {
         formatSearching: function () { return "Поиск..."; }
     });
 
-    if ($("#country").val() == '') {
-        $("#city").select2("enable", false);
-    }
 });

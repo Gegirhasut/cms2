@@ -41,7 +41,7 @@
                             <h4 class="modal-title" id="myModalLabel">Удалить предмет</h4>
                         </div>
                         <div class="modal-body" style="float: right;">
-                            <button type="button" class="btn btn-primary" onclick="removeSubject()">Да</button>
+                            <button type="button" class="btn btn-primary" onclick="removeSubject('UserSubject')">Да</button>
                             <button type="button" class="btn btn-primary" onclick="$('#modal_remove').modal('hide')">Нет</button>
                         </div>
                         <div style="clear: both"></div>

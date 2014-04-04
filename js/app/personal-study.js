@@ -6,7 +6,7 @@ $(document).ready(function() {
         minimumInputLength: 0,
         allowClear: true,
         ajax: {
-            url: '/api/getRubric/?nosession=1',
+            url: '/api/select2/Rubric/?nosession=1',
             dataType: 'json',
             maxSearchLetters: 0,
             data: function (term) {
@@ -32,13 +32,14 @@ $(document).ready(function() {
     $('#r_id').change(function() {
         $("#s_id").select2("enable", true);
         $("#s_id").select2("val", '');
+        lastResults = null;
     });
 
     $("#s_id").select2({
         minimumInputLength: 0,
         allowClear: true,
         ajax: {
-            url: '/api/getSubject/?nosession=1',
+            url: '/api/select2/Subject/?nosession=1',
             dataType: 'json',
             maxSearchLetters: 0,
             data: function (term) {

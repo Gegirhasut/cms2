@@ -3,6 +3,8 @@ class SmartyController
 {
     protected $smarty = null;
     public $user_auth = false;
+    public static $user_auth_name = 'user_auth';
+    public static $access_denied_redirect = '/auth/login';
 
     function __construct () {
         if (!isset($_SESSION['source'])) {
@@ -13,16 +15,16 @@ class SmartyController
             }
         }
 
-        if ($this->user_auth && !isset($_SESSION['user_auth'])) {
-            header('location: /auth/login');
+        if ($this->user_auth && !isset($_SESSION[self::$user_auth_name])) {
+            header('location: ' . self::$access_denied_redirect);
             exit;
         }
 
         require_once('Application/SmartyLoader.php');
         $this->smarty = SmartyLoader::getSmarty();
         $this->smarty->caching = false;
-        if (isset($_SESSION['user_auth'])) {
-            $this->smarty->assign('user_auth', $_SESSION['user_auth']);
+        if (isset($_SESSION[self::$user_auth_name])) {
+            $this->smarty->assign('user_auth', $_SESSION[self::$user_auth_name]);
         }
     }
 

@@ -57,8 +57,8 @@ function showRemoveSubject(subject) {
     $('#modal_remove').modal('show');
 }
 
-function removeSubject() {
-    $.get('/api/delete/UserSubject/' + s_id, function (data) {
+function removeSubject(object) {
+    $.get('/api/delete/' + object + '/' + s_id, function (data) {
         if (data != 0) {
             $('#subject_' + data).remove();
         }

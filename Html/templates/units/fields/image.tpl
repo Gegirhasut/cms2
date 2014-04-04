@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.0/css/jasny-bootstrap.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.0/js/jasny-bootstrap.min.js"></script>
 
-<div id="small_image_{$key}">
+<div id="small_image_{$key}" style="float:left;">
     <div id="loading"><img src="/images/app/loading.gif"></div>
     {if $form.value[$key] neq ''}
         <img src="/{$form.model->images.small_path}{$form.value[$key]}" />
@@ -14,7 +14,7 @@
 
 <div id="remove_{$key}" {if $form.value[$key] eq ''}style="display: none;"{/if} onclick="deleteImage('{$key}')">
     <img src="/images/app/deletered.png" style="width: 50px;padding-left: 20px;cursor:pointer;" />
-    Удалить миниатюру
+    Удалить
 </div>
 
 <script src="/js/app/upload/ajaxfileupload.js"></script>

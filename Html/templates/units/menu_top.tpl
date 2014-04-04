@@ -21,21 +21,21 @@
                             <li><a href="/">Образовательные центры</a></li>
                         </ul>
                     </div>
-                    {if !isset($user_auth)}
-                        <div class="col-md-4">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/auth/login">Вход</a></li>
-                                <li><a href="/auth/registration">Регистрация</a></li>
-                            </ul>
-                        </div>
-                    {else}
-                        <div class="col-md-4">
-                            <ul class="nav navbar-nav navbar-right">
+                    <div class="col-md-4">
+                        <ul class="nav navbar-nav navbar-right">
+                            {if isset($user_auth) && $user_auth.class eq 'User'}
                                 <li><a href="/cabinet">Личный кабинет</a></li>
                                 <li><a href="/auth/logout">Выход</a></li>
-                            </ul>
-                        </div>
-                    {/if}
+                            {elseif isset($user_auth) && $user_auth.class eq 'School'}
+                                <li><a href="/school">Личный кабинет</a></li>
+                                <li><a href="/school/logout">Выход</a></li>
+                            {else}
+                                <li><a href="/auth/login">Вход</a></li>
+                                <li><a href="/auth/registration">Регистрация</a></li>
+                            {/if}
+
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

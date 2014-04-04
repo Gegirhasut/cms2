@@ -37,7 +37,7 @@ class RegistrationUser extends Base
             'placeholder' => 'Введите пароль еще раз'
         ),
         'country' => array (
-            'type' => 'select',
+            'type' => 'select2_opt',
             'title' => 'Страна',
             'check' => array ('not_empty'),
             'relation' => array (
@@ -46,10 +46,16 @@ class RegistrationUser extends Base
                 'on' => 'country_id',
                 'show' => 'title'
             ),
+            'relative_fields' => array (
+                'region' => 'enable',
+                'city' => 'disable'
+            ),
+            'minimumInputLength' => 1,
+            'maxSearchLetters' => 1,
             'placeholder' => 'Выберите Вашу страну'
         ),
         'region' => array (
-            'type' => 'select',
+            'type' => 'select2_opt',
             'title' => 'Регион',
             'check' => array ('not_empty'),
             'relation' => array (
@@ -58,10 +64,18 @@ class RegistrationUser extends Base
                 'on' => 'region_id',
                 'show' => 'title'
             ),
+            'relative_fields' => array (
+                'city' => 'enable'
+            ),
+            'select_fields' => array (
+                'country_id' => 'country',
+            ),
+            'minimumInputLength' => 0,
+            'maxSearchLetters' => 0,
             'placeholder' => 'Выберите Ваш регион'
         ),
         'city' => array (
-            'type' => 'select',
+            'type' => 'select2_opt',
             'title' => 'Город',
             'check' => array ('not_empty'),
             'relation' => array (
@@ -70,6 +84,12 @@ class RegistrationUser extends Base
                 'on' => 'city_id',
                 'show' => 'title'
             ),
+            'select_fields' => array (
+                'country_id' => 'country',
+                'region_id' => 'region'
+            ),
+            'minimumInputLength' => 0,
+            'maxSearchLetters' => 1,
             'placeholder' => 'Выберите Ваш город'
         ),
         'i_am_teacher' => array ('type' => 'checkbox', 'title' => 'Я учитель'),

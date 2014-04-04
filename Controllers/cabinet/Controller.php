@@ -71,7 +71,6 @@ class Controller extends BaseController
         exit;
     }
 
-
     function assignCountry() {
         Application::requireClass('Country');
         $country = new Country();

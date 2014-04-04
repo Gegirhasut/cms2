@@ -10,7 +10,7 @@ class MessagesLog extends Base
         'ml_id' => array ('type' => 'integer', 'nolist' => 1),
         'm_id' => array('type' => 'text', 'title' => 'ID сообщения'),
         'show_u' => array (
-            'type' => 'select',
+            'type' => 'select2',
             'title' => 'Юзер 1',
             'check' => array ('not_empty'),
             'relation' => array (
@@ -22,7 +22,7 @@ class MessagesLog extends Base
         ),
         'is_out' => array ('type' => 'checkbox', 'title' => 'Исходящее?'),
         'another_u' => array (
-            'type' => 'select',
+            'type' => 'select2',
             'title' => 'Юзер 2',
             'check' => array ('not_empty'),
             'relation' => array (

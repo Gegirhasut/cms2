@@ -9,8 +9,7 @@ class Region extends Base
 
     public $fields = array (
         'region_id' => array ('type' => 'integer', 'nolist' => 1),
-        'title' => array ('type' => 'text', 'title' => 'Регион'),
-        'country_id' => array ('type' => 'select',
+        'country_id' => array ('type' => 'select2',
             'title' => 'Страна',
             'relation' => array (
                 'type' => 'oneToMany',
@@ -19,5 +18,6 @@ class Region extends Base
                 'show' => 'title'
             )
         ),
+        'title' => array ('type' => 'text', 'title' => 'Регион'),
     );
 }

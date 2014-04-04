@@ -2,6 +2,8 @@
 
 class ObjectParser
 {
+    public static $object = 'Пользователь';
+
     public static function getMessage($check) {
         switch ($check) {
             case 'not_empty':
@@ -13,11 +15,13 @@ class ObjectParser
             case 'login':
                 return 'Пара email и пароль не найдена!';
             case 'unique':
-                return 'Пользователь с таким email уже существует!';
+                return self::$object . ' с таким email уже существует!';
             case 'email_not_found':
-                return 'Пользователь с указанным email не существует!';
+                return self::$object . ' с указанным email не существует!';
             case 'strict':
                 return 'Пароль должен быть длиной не менее 6 символов!';
+            case 'website':
+                return 'Не верно задан вебсайт. Указание http(s):// обязательно!';
         }
 
         return 'Ошибка';
@@ -82,13 +86,17 @@ class ObjectParser
                                 $error = !filter_var($field['value'], FILTER_VALIDATE_EMAIL);
                             }
                             break;
+                        case 'website':
+                            if (isset($field['value'])) {
+                                $error = !filter_var($field['value'], FILTER_VALIDATE_URL);
+                            }
+                            break;
                         case 'password2':
                             if (isset($field['value'])) {
                                 $error = $object->fields[$field['password_field']]['value'] != $field['value'];
                             }
                             break;
                         case 'strict':
-
                             if (isset($field['value'])) {
                                 $error = strlen($_POST[$key]) < 6;
                             }

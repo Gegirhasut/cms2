@@ -31,7 +31,7 @@ class User extends Base
         'i_am_teacher' => array ('type' => 'checkbox', 'title' => 'Учитель'),
         'subjects' => array ('type' => 'int', 'title' => 'Количество предметов'),
         'country' => array (
-            'type' => 'select',
+            'type' => 'select2',
             'title' => 'Страна',
             'check' => array ('not_empty'),
             'relation' => array (
@@ -42,7 +42,7 @@ class User extends Base
             )
         ),
         'region' => array (
-            'type' => 'select',
+            'type' => 'select2',
             'title' => 'Регион',
             'check' => array ('not_empty'),
             'relation' => array (
@@ -57,7 +57,7 @@ class User extends Base
             )
         ),
         'city' => array (
-            'type' => 'select',
+            'type' => 'select2',
             'title' => 'Город',
             'check' => array ('not_empty'),
             'relation' => array (
@@ -72,7 +72,7 @@ class User extends Base
             )
         ),
         'status' => array (
-            'type' => 'select',
+            'type' => 'select2',
             'title' => 'Статус',
             'values' => array ('0' => 'Не активирован', '1' => 'Активирован', '2' => 'Бан')
         ),

@@ -8,10 +8,10 @@ class Controller extends SmartyController
 
     function post () {
         require_once('Helpers/ObjectParser.php');
-        Application::requireClass('NewPassword');
+        Application::requireClass('NewPasswordUser', 'User');
         require_once('Helpers/json.php');
 
-        $newPassword = new NewPassword();
+        $newPassword = new NewPasswordUser();
 
         ObjectParser::parse($_POST, $newPassword);
 

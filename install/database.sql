@@ -150,3 +150,97 @@ create table at_messages_log
  UNIQUE (show_u, another_u)
 )
 ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_school_rubrics
+(
+ sr_id int(11) NOT NULL auto_increment,
+ title varchar(30) NOT NULL DEFAULT '',
+ r_url varchar(30) NOT NULL DEFAULT '',
+ PRIMARY KEY (sr_id)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_school_subjects
+(
+ ss_id int(11) NOT NULL auto_increment,
+ subject varchar(50) NOT NULL DEFAULT '',
+ subject_po varchar(100) NOT NULL DEFAULT '',
+ url varchar(50) NOT NULL DEFAULT '',
+ sr_id int(11) NOT NULL,
+ PRIMARY KEY (ss_id),
+ INDEX (url)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `at_schools` (
+  s_id int(11) NOT NULL AUTO_INCREMENT,
+  sr_id int(11) DEFAULT NULL,
+  email varchar(255) NOT NULL DEFAULT '',
+  password varchar(32) NOT NULL DEFAULT '',
+  school_name varchar(255) NOT NULL DEFAULT '',
+  status int(11) not null DEFAULT 0 COMMENT '0 - not activated, 1 - activated, 2 - bann',
+  banner varchar(100) DEFAULT NULL,
+  website varchar(100) DEFAULT NULL,
+  info varchar(5000) NOT NULL DEFAULT '',
+  source_id int(11) DEFAULT NULL,
+  PRIMARY KEY (s_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `at_school_addresses` (
+  sa_id int(11) NOT NULL AUTO_INCREMENT,
+  s_id int(11) DEFAULT NULL,
+  phones varchar(100) DEFAULT NULL,
+  emails varchar(255) NOT NULL DEFAULT '',
+  country int(11) NOT NULL DEFAULT 0,
+  city int(11) NOT NULL DEFAULT 0,
+  region int(11) NOT NULL DEFAULT 0,
+  street varchar(200) NOT NULL DEFAULT '',
+  latitude double(9,6) NOT NULL DEFAULT 0,
+  longitude double(9,6) NOT NULL DEFAULT 0,
+  PRIMARY KEY (sa_id),
+  INDEX (s_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_school_school_subjects
+(
+ sss_id int(11) NOT NULL auto_increment,
+ s_id int(11) NOT NULL,
+ ss_id int(11) NOT NULL,
+ PRIMARY KEY (sss_id),
+ INDEX (s_id),
+ UNIQUE(s_id, ss_id)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_school_activations
+(
+ sa_id int(11) NOT NULL auto_increment,
+ s_id int(11) NOT NULL,
+ code varchar(32) not null,
+ PRIMARY KEY (sa_id)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_change_email_school
+(
+ ces_id int(11) NOT NULL auto_increment,
+ s_id int(11) NOT NULL,
+ code varchar(32) not null,
+ email varchar(255) NOT NULL DEFAULT '',
+ PRIMARY KEY (ces_id),
+ INDEX (code),
+ UNIQUE(code, email, s_id)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+create table at_remind_password_school
+(
+ rps_id int(11) NOT NULL auto_increment,
+ s_id int(11) NOT NULL,
+ code varchar(32) not null,
+ email varchar(255) NOT NULL DEFAULT '',
+ PRIMARY KEY (rps_id),
+ INDEX (code),
+ UNIQUE(code, email)
+)
+ENGINE=MyISAM  DEFAULT CHARSET=utf8;

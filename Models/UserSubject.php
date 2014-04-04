@@ -19,7 +19,7 @@ class UserSubject extends Base
 
     public $fields = array (
         'us_id' => array ('type' => 'integer', 'nolist' => 1),
-        'u_id' => array ('type' => 'select',
+        'u_id' => array ('type' => 'select2',
             'title' => 'Пользователь',
             'relation' => array (
                 'type' => 'oneToMany',
@@ -29,7 +29,7 @@ class UserSubject extends Base
             ),
             'check' => array ('not_empty'),
         ),
-        's_id' => array ('type' => 'select',
+        's_id' => array ('type' => 'select2',
             'title' => 'Предмет обучения',
             'relation' => array (
                 'type' => 'oneToMany',

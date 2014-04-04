@@ -11,7 +11,7 @@ class Message extends Base
         'subject' => array ('type' => 'text', 'title' => 'Тема', 'check' => array ('not_empty'), 'placeholder' => 'Введите тему сообщения'),
         'message' => array ('type' => 'text', 'title' => 'Сообщение', 'check' => array ('not_empty'), 'placeholder' => 'Введите сообщения для пользователя'),
         'u_id_from' => array (
-            'type' => 'select',
+            'type' => 'select2',
             'title' => 'Сообщение от',
             'check' => array ('not_empty'),
             'relation' => array (
@@ -22,7 +22,7 @@ class Message extends Base
             )
         ),
         'u_id_to' => array (
-            'type' => 'select',
+            'type' => 'select2',
             'title' => 'Сообщение к',
             'check' => array ('not_empty'),
             'relation' => array (

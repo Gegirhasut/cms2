@@ -6,10 +6,11 @@ class Subject extends Base
     public $table = 'at_subjects';
     public $identity = 's_id';
     public $api_fields = array('s_id' => 1, 'subject' => 1);
+    public $select2_field = 'subject';
 
     public $fields = array (
         's_id' => array ('type' => 'integer', 'nolist' => 1),
-        'r_id' => array ('type' => 'select',
+        'r_id' => array ('type' => 'select2',
             'title' => 'Раздел',
             'relation' => array (
                 'type' => 'oneToMany',
