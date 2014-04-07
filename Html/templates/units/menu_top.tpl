@@ -18,7 +18,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="/teachers">Учителя</a></li>
                             <li><a href="/subjects">Предметы</a></li>
-                            <li><a href="/">Образовательные центры</a></li>
+                            <li><a href="/schools">Образовательные центры</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">

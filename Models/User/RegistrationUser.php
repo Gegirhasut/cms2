@@ -31,7 +31,7 @@ class RegistrationUser extends Base
         'password2' => array (
             'nondb' => 1,
             'type' => 'password',
-            'title' => 'Пароль',
+            'title' => 'Пароль еще раз',
             'check' => array ('password2', 'not_empty'),
             'password_field' => 'password',
             'placeholder' => 'Введите пароль еще раз'
